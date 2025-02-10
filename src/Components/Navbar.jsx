@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import {useNavigate} from 'react-router-dom'
 import { Menu,X,FileText, Layout, Info, HelpCircle, Mail, FilePlus, ClipboardList, Settings2 } from "lucide-react";
 
 const navItems = [
@@ -75,7 +75,7 @@ const navItems = [
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const navigate = useNavigate()
   return (
     <nav className="bg-[#f9faff] text-[#07142b] shadow-sm relative z-50">
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -128,7 +128,7 @@ const Navbar = () => {
             ))}
 
             {/* Login Button */}
-            <button className="ml-2 px-6 py-2 bg-[#1a1f71] text-white rounded-full hover:bg-[#0070d6] transition-colors duration-200 text-sm font-medium">
+            <button onClick={() => {navigate('/login')}} className="ml-2 px-6 py-2 bg-[#1a1f71] text-white rounded-full hover:bg-[#0070d6] transition-colors duration-200 text-sm font-medium">
               Login
             </button>
           </div>
