@@ -50,7 +50,7 @@ export default function Login() {
           </button>
         </form>
         <div className="flex flex-col space-y-2 mt-4 text-center">
-          <Link to="/forgotpassword" className="text-sm text-[#0c1986] hover:underline">
+          <Link to="/forgot-password" className="text-sm text-[#0c1986] hover:underline">
             Forgot password?
           </Link>
           <div className="text-sm text-[#07142b]">

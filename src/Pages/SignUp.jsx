@@ -67,7 +67,7 @@ export default function Signup() {
       <div className="flex flex-col space-y-2 mt-4 text-center">
         <div className="text-sm text-[#07142b]">
           Already have an account?{" "}
-          <Link to="/" className="text-[#0c1986] hover:underline">
+          <Link to="/login" className="text-[#0c1986] hover:underline">
             Log in
           </Link>
         </div>

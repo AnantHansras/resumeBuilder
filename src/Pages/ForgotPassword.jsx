@@ -38,7 +38,7 @@ export default function ForgotPassword() {
         </button>
       </form>
       <div className="text-sm text-[#07142b] text-center mt-4">
-        Remember your password? <Link to='/' className="text-[#0c1986] hover:underline">Log in</Link>
+        Remember your password? <Link to='/login' className="text-[#0c1986] hover:underline">Log in</Link>
       </div>
     </div>
     </div>

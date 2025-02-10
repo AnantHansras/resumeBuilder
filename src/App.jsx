@@ -12,6 +12,8 @@ import Tut2 from './Pages/Tut2'
 import FAQ from './Pages/FAQ'
 import ContactUs from './Pages/ContactUs'
 import ResumeExamples from './Pages/ResumeExamples'
+import OTP from './Pages/OTP'
+import UpdatePassword from './Pages/UpdatePassword'
 function App() {
   
   return (
@@ -20,7 +22,9 @@ function App() {
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
-        <Route path='/Forgotpassword' element={<ForgotPassword/>}/>
+        <Route path='/otp' element={<OTP/>}/>
+        <Route path='/forgot-password' element={<ForgotPassword/>}/>
+        <Route path='/update-password' element={<UpdatePassword/>}/>
         
         <Route path='/' element={<Home/>}/>
 
