@@ -14,17 +14,19 @@ import ContactUs from './Pages/ContactUs'
 import ResumeExamples from './Pages/ResumeExamples'
 import OTP from './Pages/OTP'
 import UpdatePassword from './Pages/UpdatePassword'
+import {Toaster} from 'react-hot-toast'
 function App() {
   
   return (
     <div>
+    <Toaster position="top-center" reverseOrder={false} />
     <Navbar/>
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
         <Route path='/otp' element={<OTP/>}/>
         <Route path='/forgot-password' element={<ForgotPassword/>}/>
-        <Route path='/update-password' element={<UpdatePassword/>}/>
+        <Route path='/update-password/:id' element={<UpdatePassword/>}/>
         
         <Route path='/' element={<Home/>}/>
 

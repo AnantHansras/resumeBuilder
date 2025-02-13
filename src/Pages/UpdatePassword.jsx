@@ -1,21 +1,17 @@
 import { useState } from "react";
-
+import { useDispatch, useSelector } from "react-redux";
+import { useLocation, useNavigate } from "react-router-dom";
+import { resetPassword } from "../Services/passwordAPI";
 export default function UpdatePassword() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const location = useLocation();
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (password !== confirmPassword) {
-      alert("Passwords do not match. Please ensure both passwords are the same.");
-      return;
-    }
-    if (password.length < 8) {
-      alert("Password must be at least 8 characters long.");
-      return;
-    }
-    console.log("Password updated:", password);
-    alert("Your password has been successfully updated.");
+    const token = location.pathname.split("/").at(-1);
+    dispatch(resetPassword(password, confirmPassword, token, navigate));
   };
 
   return (

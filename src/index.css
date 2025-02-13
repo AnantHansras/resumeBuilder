@@ -6,4 +6,11 @@
   margin: 0;
   box-sizing: border-box;
   font-family: cursive;
+  
+  scrollbar-width: 0px;
+}
+::-webkit-scrollbar {
+  width: 0px;
+  height: 0px;
+  display: none;
 }

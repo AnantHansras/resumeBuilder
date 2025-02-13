@@ -1,13 +1,28 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+//import { setSignupdata } from '../slices/SignupDataSlice';
+import { sendOtp } from '../Services/userAPI';
+import { useDispatch } from "react-redux";
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log("Signup attempt with:", name, email, password);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+        
+    
+        
+        //dispatch(setSignupdata(signupData))
+        
+        await dispatch(sendOtp(email, navigate,{
+          name,email,password
+        }))
+        
+        
+        
   };
 
   return (

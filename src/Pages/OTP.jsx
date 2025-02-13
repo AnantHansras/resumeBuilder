@@ -1,17 +1,26 @@
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import OTPInput from "react-otp-input";
-
+import { signUp } from "../Services/userAPI";
+import { useNavigate,useLocation } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 export default function OTP() {
   const [otp, setOtp] = useState("");
+  //const signupData = useSelector((state) => state.signupData.signupdata);
+  const location = useLocation();
+  const signupData = location.state?.signupData;
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  useEffect(() => {
+    console.log("aaye to the")
+    if (!signupData) {
+      navigate("/signup");
+    }
+  }, [signupData, navigate]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (otp.length === 6) {
-      console.log("OTP Submitted:", otp);
-      alert(`Your OTP ${otp} has been submitted.`);
-    } else {
-      alert("Please enter a valid 6-digit OTP.");
-    }
+    const { name, email, password } = signupData;
+    dispatch(signUp(name, email, password, otp, navigate));
   };
 
   return (

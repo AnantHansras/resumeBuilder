@@ -1,40 +1,58 @@
+import f1 from '../assets/Format of Resume/F1.jpg'
+import f2 from '../assets/Format of Resume/F2.jpg'
+import f3 from '../assets/Format of Resume/F3.jpg'
+import f4 from '../assets/Format of Resume/F4.jpg'
+import f5 from '../assets/Format of Resume/F5.jpg'
+import f6 from '../assets/Format of Resume/F6.jpg'
+import f7 from '../assets/Format of Resume/F7.jpg'
+import f8 from '../assets/Format of Resume/F8.jpg' 
 const resumeExamples = [
   {
     sector: "Technology",
-    description: "Perfect for software developers, IT professionals, and tech managers.",
-    image: "/placeholder.svg?height=400&width=300",
+    description: "Perfect for DEVOPS Engineer",
+    image: f1,
   },
   {
-    sector: "Healthcare",
-    description: "Ideal for doctors, nurses, and healthcare administrators.",
-    image: "/placeholder.svg?height=400&width=300",
+    sector: "HealthCare",
+    description: "Ideal for Healthcare Management Specialist.",
+    image: f2,
   },
   {
     sector: "Finance",
-    description: "Tailored for accountants, financial analysts, and bankers.",
-    image: "/placeholder.svg?height=400&width=300",
+    description: "Tailored for Finance Associate.",
+    image: f3,
   },
   {
     sector: "Education",
-    description: "Designed for teachers, professors, and education administrators.",
-    image: "/placeholder.svg?height=400&width=300",
+    description: "Designed for Education administrators.",
+    image: f4,
   },
   {
     sector: "Marketing",
     description: "Crafted for marketing managers, content creators, and PR specialists.",
-    image: "/placeholder.svg?height=400&width=300",
+    image: f5,
   },
   {
     sector: "Engineering",
     description: "Suitable for civil, mechanical, and electrical engineers.",
-    image: "/placeholder.svg?height=400&width=300",
+    image: f6,
+  },
+  {
+    sector: "Graphic Designers",
+    description: "Best for Graphics Designers.",
+    image: f7,
+  },
+  {
+    sector: "Software Engineer",
+    description: "Best for Graphics Designers.",
+    image: f8,
   },
 ];
 
 export default function ResumeExamples() {
   return (
     <div className="min-h-screen bg-[#f9faff] py-12 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+      <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-[#07142b] mb-12">
           Resume Examples by Job Sector
         </h1>
@@ -72,4 +90,3 @@ export default function ResumeExamples() {
     </div>
   );
 }
-

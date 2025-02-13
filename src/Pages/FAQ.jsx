@@ -1,76 +1,118 @@
+import { motion } from "framer-motion";
 import { Accordion, AccordionItem } from "../Components/Accordion";
+import Footer from "../Components/Footer";
 
 const faqData = [
   {
     id: "1",
-    question: "What is Next.js?",
+    question: "How to Create Resume?",
     steps: [
-      "Next.js is a React framework for building full-stack web applications.",
-      "It provides a suite of tools and features for optimizing your React applications.",
-      "Next.js offers server-side rendering, static site generation, and API routes out of the box.",
-      "It simplifies the development process with its file-based routing system.",
-    ],
+  	"Navigate to the homepage and click on the 'Resume' button in the navigation bar.",
+  	"Select the 'Create Resume' option that appears after clicking 'Resume'.",
+  	"A resume creation form will be displayed for you to enter your details.",
+ 	"Carefully fill in the required information to ensure accuracy and completeness.",
+ 	"Once all details are provided, your resume will be generated automatically."
+      ],
   },
   {
     id: "2",
-    question: "How do I get started with Next.js?",
+    question: "How to Improve and Update Your Resume?",
     steps: [
-      "Ensure you have Node.js installed on your computer.",
-      "Open your terminal and run the command: npx create-next-app@latest",
-      "Follow the prompts to set up your project, choosing your preferred options.",
-      "Once the installation is complete, navigate to your project directory.",
-      "Run npm run dev to start the development server.",
-    ],
+  	"Navigate to the homepage and click on the 'Resume' button in the navigation bar.",
+  	"Select the 'Update Resume' option that appears after clicking 'Resume'.",
+  	"Your existing resume will be displayed, allowing you to make necessary updates.",
+  	"A form will appear where you can modify specific details as needed.",
+  	"After updating the details, choose a template from the available options.",
+  	"Once selected, your resume will be updated with the new information and design."
+      ],
   },
   {
     id: "3",
-    question: "What is the App Router?",
+    question: "How to Create an Account and Sign in?",
     steps: [
-      "The App Router is a new routing system introduced in Next.js 13.",
-      "It uses a file-system based approach for defining routes.",
-      "The App Router supports nested layouts, which allows for more flexible page structures.",
-      "It introduces new file conventions like page.js, layout.js, and loading.js for better organization.",
-      "The App Router enables the use of React Server Components by default.",
-    ],
+  	"Navigate to Zety's homepage and click on the 'My Account' option in the navigation bar.",
+  	"Select the 'Sign Up' option to create a new account.",
+  	"Enter your email address and create a secure password, or sign up using Google or LinkedIn.",
+  	"Check your email inbox for a verification message and click the confirmation link.",
+  	"Return to the website and log in using your registered email and password.",
+  	"Once logged in, access your profile and start building or updating your resume."
+      ],
+
   },
   {
     id: "4",
-    question: "What are Server Components?",
+    question: "How to Create an ATS-friendly Resume for better Job Application Success?",
     steps: [
-      "Server Components are a new React feature that allows components to be rendered on the server.",
-      "They reduce the amount of JavaScript sent to the client, improving initial page load time.",
-      "Server Components can access backend resources directly, like databases or file systems.",
-      "They work seamlessly with Client Components, allowing you to build hybrid applications.",
-      "In Next.js, all components inside the app directory are Server Components by default.",
-    ],
+  	"Use a clean, simple layout with standard fonts like Arial, Calibri, or Times New Roman.",
+  	"Avoid images, graphics, tables, and columns, as they can confuse the ATS.",
+  	"Use standard section headings such as 'Work Experience,' 'Education,' and 'Skills' to ensure the ATS recognizes key information.",
+  	"Optimize your resume with relevant keywords from the job description.",
+  	"Save your resume in an ATS-friendly format, preferably a Word document (.docx) or a simple PDF.",
+  	"Use bullet points for easy readability and avoid excessive formatting like fancy fonts or colors.",
+  	"Ensure proper spelling and grammar, as ATS systems may not recognize misspelled words.",
+  	"Do not use headers, footers, or text boxes, as some ATS systems may not read them correctly.",
+  	"<website-name> provides an optimized platform for creating ATS-friendly resumes, ensuring a high ATS score and improved job application success."
+      ],
   },
   {
     id: "5",
-    question: "How does Next.js handle styling?",
+    question: "How to View, Share and Download your Resume?",
     steps: [
-      "Next.js supports CSS Modules out of the box, allowing for scoped CSS.",
-      "Global CSS can be imported in the app/layout.js file.",
-      "Sass is supported with minimal configuration.",
-      "Tailwind CSS can be easily integrated into a Next.js project.",
-      "CSS-in-JS solutions like styled-components or Emotion can also be used with some additional setup.",
-    ],
+  	"Navigate to the homepage and click on the 'Resume' button in the navigation bar.",
+  	"Select the 'Your Resumes' option that appears after clicking 'Resume'.",
+  	"You will be able to view all the resumes you have created or refined.",
+  	"Click on the resume you want to share or download.",
+  	"Once selected, you will find the 'Share' and 'Download' buttons.",
+  	"Use the 'Share' button to generate a shareable link or send your resume directly.",
+  	"Click the 'Download' button to save your resume in your preferred format."
+      ],
   },
 ];
 
 export default function FAQ() {
   return (
-    <div className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto" >
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-4xl font-bold text-center text-[#07142b] mb-8">Frequently Asked Questions</h1>
+    <div>
+    <motion.div 
+      initial={{ opacity: 0 }} 
+      animate={{ opacity: 1 }} 
+      transition={{ duration: 0.8 }}
+      className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+    >
+      <motion.div 
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: "easeOut" }}
+        className="max-w-3xl mx-auto"
+      >
+        <h1 className="text-4xl font-bold text-center text-[#07142b] mb-8">
+          Frequently Asked Questions
+        </h1>
         <p className="text-[#46464e] text-center mb-12">
           Find step-by-step answers to common questions about Next.js and web development.
         </p>
+      </motion.div>
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, ease: "easeOut", staggerChildren: 0.2 }}
+      >
         <Accordion>
-          {faqData.map((item) => (
-            <AccordionItem key={item.id} id={item.id} title={item.question} steps={item.steps} />
+          {faqData.map((item, index) => (
+            <motion.div 
+              key={item.id}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <AccordionItem id={item.id} title={item.question} steps={item.steps} />
+            </motion.div>
           ))}
         </Accordion>
-      </div>
+      </motion.div>
+    </motion.div>
+      <Footer/>
     </div>
+    
   );
 }
+
