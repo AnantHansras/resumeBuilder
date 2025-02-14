@@ -5,13 +5,32 @@ import { motion } from "framer-motion";
 let interval;
 
 const fakeData = [
-  { id: 1, name: "Alice Johnson", designation: "Software Engineer", content: "Alice is a highly skilled software engineer with 5 years of experience." },
-  { id: 2, name: "Bob Smith", designation: "Product Manager", content: "Bob leads product teams with a strong vision and strategic planning." },
-  { id: 3, name: "Charlie Brown", designation: "UX Designer", content: "Charlie specializes in crafting intuitive and user-friendly designs." },
+  { 
+    "id": 1, 
+    "name": "Toshi Chauhan", 
+    "designation": "SDE 2", 
+    "color":"text-green-500",
+    "content": "This resume builder is a game-changer! It helped me create a professional resume in minutes with stunning templates." 
+  },
+  { 
+    "id": 2, 
+    "name": "Vivek Pandey", 
+    "designation": "Software Developer",
+    "color":"text-blue-500", 
+    "content": "A fantastic tool for job seekers! The ATS-friendly templates ensure my resume stands out in applications." 
+  },
+  { 
+    "id": 3, 
+    "name": "Natasha", 
+    "designation": "Marketing Specialist",
+    "color":" text-pink-500 ",
+    "content": "I love how easy and intuitive this platform is. The customization options make it perfect for any profession." 
+  }
 ];
 
 export const CardStack = ({ offset, scaleFactor }) => {
-  const CARD_OFFSET = offset || 12;
+  const colors = ["text-blue-500", "text-green-500", "text-red-500"];
+  const CARD_OFFSET = offset || 5;
   const SCALE_FACTOR = scaleFactor || 0.1;
   const [cards, setCards] = useState(fakeData);
 
@@ -45,7 +64,7 @@ export const CardStack = ({ offset, scaleFactor }) => {
         >
           <div className="font-normal text-[#46464e]">{card.content}</div>
           <div>
-            <p className="text-[#07142b] font-medium">{card.name}</p>
+            <p className={`${card.color} font-medium`}>{card.name}</p>
             <p className="text-neutral-400 font-normal">{card.designation}</p>
           </div>
         </motion.div>

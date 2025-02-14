@@ -6,32 +6,44 @@ import { motion } from "framer-motion";
 const tutorialVideos = [
   {
     id: "1",
-    title: "How to Write a Professional Resume Using AI | 2024",
-    videoId: "XJ7bYdjKDcA",
-  }, {
+    title: "Choosing a Resume Template",
+    videoId: "I_ixj97wfHg",
+  },
+  {
     id: "2",
-    title: "How to make Ultimate Resume? Step by step guide for Software Engineers",
-    videoId: "y3R9e2L8I9E",
+    title: "Resume Building Tips | How To Choose A Professional Resume Template",
+    videoId: "Rb4Ywc85DEQ",
   },
   {
     id: "3",
-    title: "I reviewed 4752 resumes so that you can avoid these ...",
-    videoId: "eEAEB8qM7Ds",
+    title: "The Correct Way to Format Your Resume",
+    videoId: "Jmhu5bOix4w",
   },
   {
     id: "4",
-    title: "How to Make an ATS Friendly Resume !! (For Freshers/Experienced)",
-    videoId: "IIGWpw1FXhk",
-  },{
+    title: "Choosing the right resume format (top 5 tips)",
+    videoId: "dD_J7iG1U4o",
+  },
+  {
     id: "5",
-    title: "This is Why Your Resume Gets Rejected ➤ ATS Resume Format & Tips 2024",
-    videoId: "9RkxevxGIoU",
+    title: "Resume Format for Freshers ",
+    videoId: "VB376MMEq38",
   },
   {
     id: "6",
-    title: "How to Make a Google Docs Professional Resume in 5 Minutes! full tutorial",
-    videoId: "qPPuW013F-A",
-  }
+    title: "BEST Resume Format To Land Your Dream Job in 2025",
+    videoId: "TODWBm_G4Nk",
+  },
+  {
+    id: "7",
+    title: "Resume Formats Explained | Which One Is for You?",
+    videoId: "AhrzWzW4-Dg",
+  },
+  {
+    id: "8",
+    title: "How to Format a Resume FAST - Example Resume Template",
+    videoId: "lzomFlIAPHc",
+  },
 ];
 
 export default function Tut1() {

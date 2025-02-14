@@ -6,7 +6,7 @@ export default function Projects({ data, updateData }) {
 
   useEffect(() => {
     updateData(projects);
-  }, [projects, updateData]);
+  }, [ projects]);
 
   const addProject = () => {
     if (newProject.name.trim() !== "") {

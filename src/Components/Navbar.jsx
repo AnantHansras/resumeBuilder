@@ -57,11 +57,23 @@ const navItems = [
         description: "Choose from professional templates and build your resume.", 
         href: "/create-resume" 
       },
+      // {
+      //   name: "Templates",
+      //   icon: Layout, // Represents structured document layouts, fitting for resume templates
+      //   description: "Browse professionally designed templates to craft your perfect resume.",
+      //   href: "/templates"
+      // },
       { 
         name: "Resume Examples", 
         icon: ClipboardList, // Represents lists or examples of resumes
         description: "Explore industry-specific resume samples for inspiration.", 
         href: "/example-resume" 
+      },
+      { 
+        name: "Your Resumes", 
+        icon: FileText, // Represents lists or examples of resumes
+        description: "You can see and download all your created resumes here", 
+        href: "/your-resume" 
       },
       // { 
       //   name: "Improve Resume", 
@@ -76,6 +88,7 @@ const navItems = [
 
 
 const Navbar = () => {
+  
   const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();

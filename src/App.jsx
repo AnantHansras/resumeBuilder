@@ -15,6 +15,8 @@ import ResumeExamples from './Pages/ResumeExamples'
 import OTP from './Pages/OTP'
 import UpdatePassword from './Pages/UpdatePassword'
 import {Toaster} from 'react-hot-toast'
+import Templates from './Pages/Templates'
+import Resume from './Components/Resume'
 function App() {
   
   return (
@@ -38,7 +40,9 @@ function App() {
         <Route path='/tut2' element={<Tut2/>}/>
         
         <Route path='/create-resume' element={<CreateResume/>}/>
+        <Route path='/templates' element={<Templates/>}/>
         <Route path='/example-resume' element={<ResumeExamples/>}/>
+        <Route path='/resume' element={<Resume/>}/>
       </Routes>
     </div>
   )

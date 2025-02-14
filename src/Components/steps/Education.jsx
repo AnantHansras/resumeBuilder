@@ -10,7 +10,7 @@ export default function Education({ data, updateData }) {
 
   useEffect(() => {
     updateData(formData);
-  }, [formData, updateData]);
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

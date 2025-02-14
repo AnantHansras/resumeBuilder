@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import PersonalInfo from "./steps/PersonalInfo";
 import Education from "./steps/Education";
 import Skills from "./steps/Skills";
 import Projects from "./steps/Projects";
 import Experience from "./steps/Experience";
 import ProgressIndicator from "./ProgressIndicator";
+import Resume from "./Resume";
 
 const steps = ["Personal Info", "Education", "Skills", "Projects", "Experience"];
 
@@ -17,9 +19,16 @@ export default function MultiStepForm() {
     projects: [],
     experience: [],
   });
+  
+  const navigate = useNavigate();
 
   const handleNext = () => {
-    setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+    if (currentStep === steps.length - 1) {
+      navigate("/resume", { state: { formData } });
+      console.log(formData);
+    } else {
+      setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
+    }
   };
 
   const handlePrev = () => {
@@ -61,8 +70,8 @@ export default function MultiStepForm() {
         </button>
         <button 
           onClick={handleNext} 
-          disabled={currentStep === steps.length - 1} 
-          style={{ padding: "0.75rem 1.5rem", backgroundColor: "#07142b", color: "white", border: "none", borderRadius: "4px", cursor: "pointer", opacity: currentStep === steps.length - 1 ? 0.5 : 1 }}
+          className="hover:opacity-50"
+          style={{ padding: "0.75rem 1.5rem", backgroundColor: "#07142b", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}
         >
           {currentStep === steps.length - 1 ? "Submit" : "Next"}
         </button>
