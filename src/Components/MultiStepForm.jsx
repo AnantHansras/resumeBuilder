@@ -51,8 +51,6 @@ export default function MultiStepForm() {
         return <Projects data={formData.projects} updateData={(data) => updateFormData("projects", data)} />;
       case 4:
         return <Experience data={formData.experience} updateData={(data) => updateFormData("experience", data)} />;
-      default:
-        return null;
     }
   };
 

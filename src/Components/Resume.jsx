@@ -1,22 +1,9 @@
 
 import React, { useRef } from "react";
-
+import {useLocation} from 'react-router-dom'
 const Resume = () => {
-    const skills = [
-        "API",
-        "Azure",
-        "Azure SQL",
-        "CSS",
-        "Git",
-        "HTML",
-        "Java",
-        "Javascript",
-        "jQuery",
-        "Python",
-        "springboot",
-        "SQL",
-        "SQL Server",
-      ];
+    const location = useLocation();
+    const formData = location.state?.formData || {};
   const handleDownload = () => {
     const printContents = document.getElementById("resume-content").innerHTML;
     const originalContents = document.body.innerHTML;
@@ -65,54 +52,42 @@ const Resume = () => {
           <div className="flex gap-12">
             {/* Left column */}
             <div className="flex-[1.9] ">
-              <section className="mb-8">
-                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">EXPERIENCE</h2>
+            <section className="mb-8">
+  <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
+    EXPERIENCE
+  </h2>
 
-                <div className="mb-6">
-                  <h3 className="font-semibold text-[0.75rem] text-gray-700">
-                    Microsoft — <span className="italic">Software Engineer II</span>
-                  </h3>
-                  <p className="text-[0.65rem] text-gray-600 mb-2">December 2023 – Present</p>
-                  <ul className="text-[0.7rem] text-gray-700 list-disc pl-5 space-y-2">
-                    <li>Developed an Automatic Schema change detection feature for the Azure SQL Metadata Team.</li>
-                    <li>Contributed to Metadata Versioning project for SQL Server.</li>
-                    <li>Developed a Test Framework for database version upgrades.</li>
-                  </ul>
-                </div>
+  {formData.experience.map((exp, index) => (
+    <div key={index} className="mb-6">
+      <h3 className="font-semibold text-[0.75rem] text-gray-700">
+        {exp.company} — <span className="italic">{exp.position}</span>
+      </h3>
+      <p className="text-[0.65rem] text-gray-600 mb-2">{exp.duration}</p>
+      <p className="text-[0.7rem] text-gray-700">{exp.description}</p>
+    </div>
+  ))}
+</section>
 
-                <div className="mb-6">
-                  <h3 className="font-semibold text-[0.75rem] text-gray-700">
-                    Fidelity Investments — <span className="italic">Software Development Intern</span>
-                  </h3>
-                  <p className="text-[0.65rem] text-gray-600 mb-2">Jan 2020 – June 2020</p>
-                  <p className="text-[0.7rem] text-gray-700">
-                    Created a tool for automatic API boilerplate generation, saving developers 60% of their time.
-                  </p>
-                </div>
-              </section>
 
               {/* Projects */}
               <section className="mb-8">
-                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">PROJECTS</h2>
-                <div className="mb-4">
-                  <h3 className="font-semibold text-[0.75rem] mb-1 text-gray-700">
-                    Job Search — <span className="italic">WIT Engage Hackathon</span>
-                  </h3>
-                  <p className="text-gray-700 text-[0.7rem]">Job search web application for blue-collared workers.</p>
-                </div>
-                <div className="mb-4">
-                  <h3 className="font-semibold text-[0.75rem] mb-1 text-gray-700">
-                    Speed Reader App — <span className="italic ">Mobile jQuery</span>
-                  </h3>
-                  <p className="text-gray-700 text-[0.7rem]">A web application to enhance the reading skills of a beginner.</p>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-[0.75rem] mb-1 text-gray-700">
-                    Math Game — <span className="italic">HTML, CSS, JavaScript</span>
-                  </h3>
-                  <p className="text-gray-700 text-[0.7rem]">A fun game of basic math calculations with score.</p>
-                </div>
-              </section>
+  <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
+    PROJECTS
+  </h2>
+  {formData.projects.map((proj, index) => (
+    <div key={index} className="mb-4">
+      <h3 className="font-semibold text-[0.75rem] mb-1 text-gray-700">
+        {proj.name} — <span className="italic">{proj.techStack}</span>
+      </h3>
+      <p className="text-gray-700 text-[0.7rem]">{proj.description}</p>
+      <a href={proj.link} className="text-blue-500 text-[0.7rem] underline" target="_blank" rel="noopener noreferrer">
+        Project Link
+      </a>
+    </div>
+  ))}
+                </section>
+
+
 
               <section className="mb-4">
                 <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">ACHIEVEMENTS</h2>
@@ -125,10 +100,11 @@ const Resume = () => {
 
             {/* Right column */}
             <div className="flex-1">
+            {/* skills */}
             <section className="mb-8">
       <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">SKILLS</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-        {skills.map((skill) => (
+        {formData.skills.map((skill) => (
             <span className="bg-gray-100 font-bold rounded-xl p-2" style={{
         fontSize: "14px",
         fontWeight: "bold",
@@ -137,36 +113,38 @@ const Resume = () => {
       </span>
         ))}
       </div>
-    </section>
+            </section>
 
+            {/* Education */}
               <section className="mb-8">
                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">EDUCATION</h2>
                 <div className="mb-6">
                   <div className="flex justify-between items-baseline mb-1">
                     <h3 className="font-normal text-[0.7rem]">
-                      National Institute of Technology, Kurukshetra —{" "}
-                      <span className="italic">Bachelor of Technology in Information Technology</span>
+                      {formData.education.higher.name} —{" "}
+                      <span className="italic">{formData.education.higher.degree}</span>
                     </h3>
                   </div>
-                  <p className="text-[0.7rem] text-gray-600 mb-2">2021 | CGPA: 9.1934</p>
+                  <p className="text-[0.7rem] text-gray-600 mb-2">{formData.education.higher.year} | CGPA: {formData.education.higher.cg}</p>
                 </div>
                 <div className="mb-6">
                   <div className="flex justify-between items-baseline mb-1">
                     <h3 className="font-normal text-[0.7rem]">
-                      JBS Children Paradise School, Kota — <span className="italic">Senior Secondary (XII)</span>
+                    {formData.education.twelfth.name} — <span className="italic">Senior Secondary (XII)</span>
                     </h3>
                   </div>
-                  <p className="text-[0.7rem] text-gray-600 mb-2">2017 | 91.40%</p>
+                  <p className="text-[0.7rem] text-gray-600 mb-2">{formData.education.twelfth.year} | Percentage: {formData.education.twelfth.percentage}</p>
                 </div>
                 <div className="mb-6">
                   <div className="flex justify-between items-baseline mb-1">
                     <h3 className="font-normal text-[0.7rem]">
-                      Jim Corbett Secondary School, Haldwani — <span className="italic">Secondary (X)</span>
+                    {formData.education.tenth.name} — <span className="italic">Secondary (X)</span>
                     </h3>
                   </div>
-                  <p className="text-[0.7rem] text-gray-600 mb-2">2015 | CGPA: 10</p>
+                  <p className="text-[0.7rem] text-gray-600 mb-2">{formData.education.tenth.year} | Percentage: {formData.education.tenth.percentage}</p>
                 </div>
               </section>
+
               <section>
                 <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">Other</h2>
                 <p className="text-[0.7rem]">English, Hindi</p>

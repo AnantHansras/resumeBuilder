@@ -30,6 +30,7 @@ export default function Skills({ data, updateData }) {
           <input
             id="newSkill"
             value={newSkill}
+            placeholder="Enter only 1 skill at a time(e.g. React)"
             onChange={(e) => setNewSkill(e.target.value)}
             className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ffc85e] focus:border-[#ffc85e]"
           />
