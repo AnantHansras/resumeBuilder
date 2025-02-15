@@ -2,7 +2,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Zap, Shield, CheckCircle } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
-
+import home1 from '../assets/home1.jpg'
+import home2 from '../assets/home2.jpg'
+import Footer from '../Components/Footer'
 const Home = () => {
   return (
     <div className="min-h-screen bg-[#f9faff]">
@@ -78,7 +80,7 @@ const Home = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: false, amount: 0.2 }}
-          transition={{ duration: 0.8, delay: 1.4 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24"
         >
           <motion.div
@@ -86,10 +88,10 @@ const Home = () => {
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: false, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 1.6 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
             <img
-              src="/placeholder.svg"
+              src={home1}
               alt="Job seeker success"
               className="w-full h-full object-cover"
             />
@@ -117,7 +119,7 @@ const Home = () => {
           initial={{ opacity: 0, scale: 0.9 }}
   whileInView={{ opacity: 1, scale: 1 }}
   viewport={{ once: false, amount: 0.2 }} // Adjust amount for sensitivity
-  transition={{ duration: 0.8, delay: 1 }}
+  transition={{ duration: 0.8, delay: 0.31 }}
           className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-24"
         >
           <div>
@@ -127,7 +129,7 @@ const Home = () => {
               of recruiters and lands you your dream job.
             </p>
             <a
-              href="/templates"
+              href="/example-resume"
               className="inline-flex items-center px-6 py-3 text-lg font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
             >
               Explore Templates <ArrowRight className="ml-2" />
@@ -137,10 +139,10 @@ const Home = () => {
             className="relative h-[400px] rounded-lg overflow-hidden shadow-xl"
             initial={{ opacity: 0, x: 50 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             <img
-              src="/placeholder.svg"
+              src={home2}
               alt="Professional resume example"
               className="w-full h-full object-cover"
             />
@@ -169,6 +171,7 @@ const Home = () => {
       </a>
     </motion.div>
       </div>
+      <Footer/>
     </div>
   );
 };

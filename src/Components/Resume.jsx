@@ -4,12 +4,13 @@
 import React from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaArrowLeft, FaDownload, FaSave } from "react-icons/fa";
-
+import { addResume } from "../Services/resumeAPI";
+import {useDispatch} from 'react-redux'
 const Resume = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const formData = location.state?.formData || {};
-
+  const dispatch = useDispatch();
   const handleDownload = () => {
     const printContents = document.getElementById("resume-content").innerHTML;
     const originalContents = document.body.innerHTML;
@@ -19,13 +20,14 @@ const Resume = () => {
     document.body.innerHTML = originalContents;
     window.location.reload();
   };
-
+  const storedToken = localStorage.getItem("token");
+const token = storedToken ? JSON.parse(storedToken) : null;
   const handleBack = () => {
     navigate('/create-resume',{ state: { formData } });
   };
 
   const handleSave = () => {
-    alert("Resume saved successfully!");
+    dispatch(addResume(formData,token))
   };
 
   return (

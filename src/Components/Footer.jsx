@@ -11,13 +11,14 @@ const Footer = () => {
           {/* Logo and company info section */}
           <div className="lg:col-span-3 space-y-8">
             <div className="transform hover:scale-105 transition-transform duration-300">
-              <img
+              {/* <img
                 src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-02-12%20214655-ydjgtLHtydapBy6die4ELA3RncA9Mm.png"
-                alt="Zety Logo"
+                alt="RESUMIFY Logo"
                 width={95}
                 height={32}
                 className="brightness-110"
-              />
+              /> */}
+              <p className="text-xl text-semibold">RESUMIFY</p>
             </div>
             <p className="text-[#94A3B8] text-sm leading-relaxed">
               We share knowledge, tips, and tools to help everyone find their dream job.
@@ -52,10 +53,10 @@ const Footer = () => {
               <div className="group flex items-center gap-2">
                 <span className="text-[#94A3B8]">Email:</span>
                 <a
-                  href="mailto:support@zety.com"
+                  href="mailto:support@RESUMIFY.com"
                   className="text-white group-hover:text-[#FCD34D] transition-colors duration-300"
                 >
-                  support@zety.com
+                  support@RESUMIFY.com
                 </a>
               </div>
             </div>

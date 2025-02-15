@@ -69,12 +69,12 @@ const navItems = [
         description: "Explore industry-specific resume samples for inspiration.", 
         href: "/example-resume" 
       },
-      { 
-        name: "Your Resumes", 
-        icon: FileText, // Represents lists or examples of resumes
-        description: "You can see and download all your created resumes here", 
-        href: "/your-resume" 
-      },
+      // { 
+      //   name: "Your Resumes", 
+      //   icon: FileText, // Represents lists or examples of resumes
+      //   description: "You can see and download all your created resumes here", 
+      //   href: "/your-resume" 
+      // },
       // { 
       //   name: "Improve Resume", 
       //   icon: Settings2, // Represents optimization and fine-tuning
@@ -89,7 +89,9 @@ const navItems = [
 
 const Navbar = () => {
   
-  const token = localStorage.getItem("token") ? localStorage.getItem("token") : null;
+  const token = localStorage.getItem("token")
+    ? JSON.parse(localStorage.getItem("token"))
+    : null;
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   
@@ -107,7 +109,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex-shrink-0">
             <a href="/" className="flex items-center">
-              <span className="text-2xl font-bold text-[#0c1986]">Zety</span>
+              <span className="text-2xl font-bold text-[#0c1986]">RESUMIFY</span>
             </a>
           </div>
 

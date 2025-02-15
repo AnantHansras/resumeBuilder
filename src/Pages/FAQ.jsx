@@ -30,7 +30,7 @@ const faqData = [
     id: "3",
     question: "How to Create an Account and Sign in?",
     steps: [
-  	"Navigate to Zety's homepage and click on the 'My Account' option in the navigation bar.",
+  	"Navigate to RESUMIFY's homepage and click on the 'My Account' option in the navigation bar.",
   	"Select the 'Sign Up' option to create a new account.",
   	"Enter your email address and create a secure password, or sign up using Google or LinkedIn.",
   	"Check your email inbox for a verification message and click the confirmation link.",

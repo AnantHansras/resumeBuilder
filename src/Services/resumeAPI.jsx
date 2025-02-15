@@ -13,6 +13,7 @@ export function addResume(resume, token) {
   return async (dispatch) => {
      dispatch(setLoading(true))
     try {
+
       const response = await apiConnector("POST", ADDRESUME_API, {resume},{Authorization: `Bearer ${token}`,})
       console.log("ADDRESUME API RESPONSE............", response)
 
@@ -49,7 +50,7 @@ export function deleteResume(resumeId,token) {
     }
 }
 
-export function deleteResume(token) {
+export function getAllResume(token) {
     return async (dispatch) => {
        dispatch(setLoading(true))
       try {
