@@ -16,17 +16,17 @@ const Resume = () => {
 
   return (
     <div className="bg-[#f9faff] font-sans ">
-      <div className="relative">
+      <div className="relative ">
         <button
           onClick={handleDownload}
-          className="absolute top-24 right-4 px-4 py-2 bg-blue-500 text-white rounded-md shadow-md hover:bg-blue-600"
+          className="absolute top-24 right-4 px-4 py-2 bg-blue-500 text-white rounded-md font-sans shadow-md hover:bg-blue-600"
         >
           Download PDF
         </button>
 
         <div
           id="resume-content"
-          className="max-w-[794px] mx-auto p-6 -mt-20 rounded-md shadow-xl bg-white text-gray-800 font-serif scale-75"
+          className="max-w-[794px] mx-auto p-6 -mt-20 rounded-md shadow-xl bg-white text-gray-800 font-sans scale-75"
           style={{
             width: "794px",
             height: "1123px",
@@ -36,15 +36,15 @@ const Resume = () => {
           }}
         >
           {/* Header */}
-          <div className="flex justify-between items-start mb-12">
+          <div className="flex justify-between items-start mb-12 font-sans">
             <div>
-              <h1 className="text-xl font-bold mb-2 font-sans">Mansi Chauhan</h1>
-              <p className="text-gray-700 text-sm font-sans">Software Engineer II at Microsoft</p>
+              <h1 className="text-xl font-bold mb-2 font-sans">{formData.personalInfo.name}</h1>
+              <p className="text-gray-600 font-[500] text-sm font-sans uppercase">{formData.personalInfo.position}</p>
             </div>
             <div className="text-[0.65rem]">
-              <p>Phone: +91-9149241088</p>
-              <p>toshichauhan29@gmail.com</p>
-              <p>Date of Birth: 24 January 2000</p>
+              <p>Phone: {formData.personalInfo.phone}</p>
+              <p>{formData.personalInfo.email}</p>
+              <p>Date of Birth: {formData.personalInfo.dob}</p>
             </div>
           </div>
 
@@ -52,34 +52,35 @@ const Resume = () => {
           <div className="flex gap-12">
             {/* Left column */}
             <div className="flex-[1.9] ">
-            <section className="mb-8">
-  <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
-    EXPERIENCE
-  </h2>
-
-  {formData.experience.map((exp, index) => (
-    <div key={index} className="mb-6">
-      <h3 className="font-semibold text-[0.75rem] text-gray-700">
-        {exp.company} — <span className="italic">{exp.position}</span>
-      </h3>
-      <p className="text-[0.65rem] text-gray-600 mb-2">{exp.duration}</p>
-      <p className="text-[0.7rem] text-gray-700">{exp.description}</p>
-    </div>
-  ))}
-</section>
-
-
+            {/* experiences */}
+            {
+              !(formData.experience.length === 0) && (<section className="mb-8">
+              <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
+                EXPERIENCE
+              </h2>
+              {formData.experience.map((exp, index) => (
+                <div key={index} className="mb-6">
+                  <h3 className="font-semibold text-[0.75rem] text-gray-700">
+                    {exp.company} — <span className="italic">{exp.position}</span>
+                  </h3>
+                  <p className="text-[0.65rem] font-sans text-gray-600 mb-2">{exp.duration}</p>
+                  <p className="text-[0.7rem] font-sans text-gray-700">{exp.description}</p>
+                </div>
+              ))}
+            </section>)
+            }
+            
               {/* Projects */}
               <section className="mb-8">
-  <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
+  <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="font-sans text-blue-500">
     PROJECTS
   </h2>
   {formData.projects.map((proj, index) => (
     <div key={index} className="mb-4">
-      <h3 className="font-semibold text-[0.75rem] mb-1 text-gray-700">
+      <h3 className="font-semibold font-sans text-[0.75rem] mb-1 text-gray-700">
         {proj.name} — <span className="italic">{proj.techStack}</span>
       </h3>
-      <p className="text-gray-700 text-[0.7rem]">{proj.description}</p>
+      <p className="text-gray-700 font-sans text-[0.7rem]">{proj.description}</p>
       <a href={proj.link} className="text-blue-500 text-[0.7rem] underline" target="_blank" rel="noopener noreferrer">
         Project Link
       </a>
@@ -87,25 +88,31 @@ const Resume = () => {
   ))}
                 </section>
 
-
-
-              <section className="mb-4">
-                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">ACHIEVEMENTS</h2>
-                <p className="mb-2 text-[0.7rem]">
-                  Secured City Rank 1<sup>st</sup> and State Rank 24<sup>th</sup> in 13<sup>th</sup> National Cyber Olympiad.
-                </p>
-                <p className="mb-2 text-[0.7rem]">Semi-finalist at Code Gladiators 2020</p>
-              </section>
+              {/* Achievments */}
+              {
+                !(formData.achievements.length === 0)  && (<section className="mb-4">
+                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500 font-sans">ACHIEVEMENTS</h2>
+                <ul className="list-disc list-inside opacity-80 font-sans">
+                {formData.achievements.map((a,index)=>(
+                  <li className="mb-1 text-[0.7rem] font-sans" key={index}>
+                  {a}
+                </li>
+                ))
+                }
+                </ul>
+              </section>)
+              }
+              
             </div>
 
             {/* Right column */}
             <div className="flex-1">
             {/* skills */}
             <section className="mb-8">
-      <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">SKILLS</h2>
+      <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500 font-sans">SKILLS</h2>
       <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
-        {formData.skills.map((skill) => (
-            <span className="bg-gray-100 font-bold rounded-xl p-2" style={{
+        {formData.skills.map((skill,index) => (
+            <span key={index} className="bg-gray-100 font-bold rounded-xl p-2 font-sans" style={{
         fontSize: "14px",
         fontWeight: "bold",
       }}>
@@ -117,10 +124,10 @@ const Resume = () => {
 
             {/* Education */}
               <section className="mb-8">
-               <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">EDUCATION</h2>
+               <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500 font-sans">EDUCATION</h2>
                 <div className="mb-6">
                   <div className="flex justify-between items-baseline mb-1">
-                    <h3 className="font-normal text-[0.7rem]">
+                    <h3 className="font-normal text-[0.7rem] font-sans">
                       {formData.education.higher.name} —{" "}
                       <span className="italic">{formData.education.higher.degree}</span>
                     </h3>
@@ -145,10 +152,21 @@ const Resume = () => {
                 </div>
               </section>
 
-              <section>
-                <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">Other</h2>
-                <p className="text-[0.7rem]">English, Hindi</p>
-              </section>
+              {/* others */}
+              {
+                !(formData.others.length === 0) && <section>
+                            <h2 style={{ marginBottom: "16px", fontSize: "18px", fontWeight: "bold" }} className="text-blue-500">
+                              Other
+                            </h2>
+                            {formData.others.map((item, index) => (
+                              <p key={index} className="text-[0.7rem]">
+                                {item.text} {item.link && <a href={item.link} className="text-blue-500 underline">[Link]</a>}
+                              </p>
+                            ))}
+                          </section>
+              }
+              
+
             </div>
           </div>
         </div>

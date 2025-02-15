@@ -85,7 +85,7 @@ export function AccordionItem({ id, title, steps }) {
               transition={{ duration: 0.3, delay: steps.length * 0.1 }}
             >
               If you need further assistance,{' '}
-              <a href="/contact" className="text-[#0c1986] hover:underline transition-all duration-200">
+              <a href="/contact-us" className="text-[#0c1986] hover:underline transition-all duration-200">
                 contact us
               </a>
               .

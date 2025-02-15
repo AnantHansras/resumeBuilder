@@ -5,10 +5,12 @@ import Education from "./steps/Education";
 import Skills from "./steps/Skills";
 import Projects from "./steps/Projects";
 import Experience from "./steps/Experience";
+import Achievements from "./steps/Achievements";
+import Others from './steps/Others'
 import ProgressIndicator from "./ProgressIndicator";
 import Resume from "./Resume";
 
-const steps = ["Personal Info", "Education", "Skills", "Projects", "Experience"];
+const steps = ["Personal Info", "Education", "Skills", "Achievements", "Projects", "Experience","Others"];
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -16,8 +18,10 @@ export default function MultiStepForm() {
     personalInfo: {},
     education: {},
     skills: [],
+    achievements: [],
     projects: [],
     experience: [],
+    others: []
   });
   
   const navigate = useNavigate();
@@ -48,9 +52,13 @@ export default function MultiStepForm() {
       case 2:
         return <Skills data={formData.skills} updateData={(data) => updateFormData("skills", data)} />;
       case 3:
-        return <Projects data={formData.projects} updateData={(data) => updateFormData("projects", data)} />;
+        return <Achievements data={formData.achievements} updateData={(data) => updateFormData("achievements", data)} />;
       case 4:
+        return <Projects data={formData.projects} updateData={(data) => updateFormData("projects", data)} />;
+      case 5:
         return <Experience data={formData.experience} updateData={(data) => updateFormData("experience", data)} />;
+      case 6:
+        return <Others data={formData.experience} updateData={(data) => updateFormData("experience", data)} />;
     }
   };
 

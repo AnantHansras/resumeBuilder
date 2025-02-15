@@ -11,3 +11,9 @@ export const passwordEndpoints = {
     RESETPASSWORD_API : BASE_URL + '/password/resetpassword'
 }
 
+export const resuemEndpoints = {
+    ADDRESUME_API : BASE_URL + '/resume/addresume',
+    DELETERESUME_API : BASE_URL + '/resume/deleteresume',
+    GETALLRESUME_API : BASE_URL + '/resume/getallresume',
+}
+
