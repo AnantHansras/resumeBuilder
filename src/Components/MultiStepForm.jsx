@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Eye } from "lucide-react";
 import PersonalInfo from "./steps/PersonalInfo";
 import Education from "./steps/Education";
 import Skills from "./steps/Skills";
 import Projects from "./steps/Projects";
 import Experience from "./steps/Experience";
 import Achievements from "./steps/Achievements";
-import Others from './steps/Others'
+import Others from "./steps/Others";
 import ProgressIndicator from "./ProgressIndicator";
-import Resume from "./Resume";
+import { useLocation } from "react-router-dom";
 
-const steps = ["Personal Info", "Education", "Skills", "Achievements", "Projects", "Experience","Others"];
+const steps = ["Personal Info", "Education", "Skills", "Achievements", "Projects", "Experience", "Others"];
 
 export default function MultiStepForm() {
   const [currentStep, setCurrentStep] = useState(0);
@@ -21,10 +22,16 @@ export default function MultiStepForm() {
     achievements: [],
     projects: [],
     experience: [],
-    others: []
+    others: [],
   });
-  
+
+  const location = useLocation();
   const navigate = useNavigate();
+  const formData1 = location.state?.formData || {};
+
+  useEffect(() => {
+    setFormData(formData1);
+  }, []);
 
   const handleNext = () => {
     if (currentStep === steps.length - 1) {
@@ -58,7 +65,9 @@ export default function MultiStepForm() {
       case 5:
         return <Experience data={formData.experience} updateData={(data) => updateFormData("experience", data)} />;
       case 6:
-        return <Others data={formData.experience} updateData={(data) => updateFormData("experience", data)} />;
+        return <Others data={formData.others} updateData={(data) => updateFormData("others", data)} />;
+      default:
+        return null;
     }
   };
 
@@ -66,7 +75,7 @@ export default function MultiStepForm() {
     <div style={{ width: "100%", maxWidth: "800px", margin: "0 auto", backgroundColor: "white", padding: "2rem", borderRadius: "8px", boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)" }}>
       <ProgressIndicator steps={steps} currentStep={currentStep} />
       <div style={{ marginTop: "4rem", marginBottom: "2rem" }}>{renderStep()}</div>
-      <div style={{ display: "flex", justifyContent: "space-between", marginTop: "2rem" }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "2rem" }}>
         <button 
           onClick={handlePrev} 
           disabled={currentStep === 0} 
@@ -74,6 +83,15 @@ export default function MultiStepForm() {
         >
           Previous
         </button>
+        {currentStep >= 3 && (
+          <button 
+          className="flex justify-center items-center border border-gray-300 rounded-xl p-3 bg-[#ffc85e] text-[#07142b] hover:bg-[#ffd78e]"
+            onClick={() => navigate("/resume", { state: { formData } })} 
+            style={{ cursor: "pointer"}}
+          >
+            Preview
+          </button>
+        )}
         <button 
           onClick={handleNext} 
           className="hover:opacity-50"

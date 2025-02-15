@@ -11,7 +11,7 @@ export default function Experience({ data, updateData }) {
 
   useEffect(() => {
     updateData(experiences);
-  }, [experiences, updateData]);
+  }, [experiences]);
 
   const addExperience = () => {
     if (newExperience.company.trim() && newExperience.position.trim()) {
