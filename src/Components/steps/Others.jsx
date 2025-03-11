@@ -1,9 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Resources({ data, updateData }) {
-  const [resources, setResources] = useState(data || []);
+  const [resources, setResources] = useState(() => {
+    // Retrieve stored data if available, otherwise use props data
+    const savedResources = localStorage.getItem("resources");
+    return savedResources ? JSON.parse(savedResources) : data || [];
+  });
+
   const [newText, setNewText] = useState("");
   const [newLink, setNewLink] = useState("");
+
+  useEffect(() => {
+    // Save resources to localStorage whenever it changes
+    localStorage.setItem("resources", JSON.stringify(resources));
+    updateData(resources)
+  }, [resources]);
 
   const addResource = () => {
     if (newText.trim() !== "" || newLink.trim() !== "") {
@@ -13,13 +24,17 @@ export default function Resources({ data, updateData }) {
       setNewText("");
       setNewLink("");
     }
-    console.log(resources)
   };
 
   const removeResource = (index) => {
     const updatedResources = resources.filter((_, i) => i !== index);
     setResources(updatedResources);
     updateData(updatedResources);
+  };
+
+  const clearResources = () => {
+    setResources([]);
+    localStorage.removeItem("resources");
   };
 
   return (
@@ -51,7 +66,9 @@ export default function Resources({ data, updateData }) {
         <ul className="space-y-2">
           {resources.map((resource, index) => (
             <li key={index} className="flex items-center justify-between bg-[#f9faff] p-2 rounded">
-              <span className="text-gray-800">{resource.text} {resource.text && resource.link ? "-" : ""} </span>
+              <span className="text-gray-800">
+                {resource.text} {resource.text && resource.link ? "-" : ""}{" "}
+              </span>
               {resource.link && (
                 <a href={resource.link} target="_blank" rel="noopener noreferrer" className="text-blue-500 underline ml-2">
                   {resource.link}
@@ -66,9 +83,18 @@ export default function Resources({ data, updateData }) {
             </li>
           ))}
         </ul>
+        {resources.length > 0 && (
+          <button
+            onClick={clearResources}
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+          >
+            Clear All Resources
+          </button>
+        )}
       </div>
     </div>
   );
 }
+
 
 

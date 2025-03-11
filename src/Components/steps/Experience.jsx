@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 
 export default function Experience({ data, updateData }) {
-  const [experiences, setExperiences] = useState(data || []);
+  const [experiences, setExperiences] = useState(() => {
+    // Retrieve stored data if available, otherwise use props data
+    const savedExperiences = localStorage.getItem("experiences");
+    return savedExperiences ? JSON.parse(savedExperiences) : data || [];
+  });
+
   const [newExperience, setNewExperience] = useState({
     company: "",
     position: "",
@@ -10,6 +15,8 @@ export default function Experience({ data, updateData }) {
   });
 
   useEffect(() => {
+    // Save experiences to localStorage whenever it changes
+    localStorage.setItem("experiences", JSON.stringify(experiences));
     updateData(experiences);
   }, [experiences]);
 
@@ -21,7 +28,13 @@ export default function Experience({ data, updateData }) {
   };
 
   const removeExperience = (index) => {
-    setExperiences(experiences.filter((_, i) => i !== index));
+    const updatedExperiences = experiences.filter((_, i) => i !== index);
+    setExperiences(updatedExperiences);
+  };
+
+  const clearExperiences = () => {
+    setExperiences([]);
+    localStorage.removeItem("experiences");
   };
 
   const handleChange = (e) => {
@@ -82,13 +95,19 @@ export default function Experience({ data, updateData }) {
                 <p className="text-sm mt-2">{exp.description}</p>
                 <button
                   onClick={() => removeExperience(index)}
-                  className="mt-2 px-3 py-1 bg-red-500 text-white rounded-md"
+                  className="mt-2 px-3 py-1 bg-red-500 text-white rounded-md hover:bg-red-600"
                 >
                   Remove Experience
                 </button>
               </li>
             ))}
           </ul>
+          <button
+            onClick={clearExperiences}
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+          >
+            Clear All Experiences
+          </button>
         </div>
       )}
     </div>

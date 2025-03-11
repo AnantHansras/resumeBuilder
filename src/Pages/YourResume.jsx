@@ -3,11 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllResume } from "../Services/resumeAPI";
 import { toast } from "react-hot-toast";
 
-export default function ResumeList() {
+export default function YourResume() {
   const dispatch = useDispatch();
   const [resumes, setResumes] = useState([]);
-  const token = useSelector((state) => state.auth.token);
-  const loading = useSelector((state) => state.app.loading);
+  const storedToken = localStorage.getItem("token");
+  const token = storedToken ? JSON.parse(storedToken) : null;
+  
 
   useEffect(() => {
     if (token) {
@@ -26,9 +27,8 @@ export default function ResumeList() {
   return (
     <div style={{ padding: "20px" }}>
       <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "16px" }}>Your Resumes</h1>
-      {loading ? (
-        <p>Loading...</p>
-      ) : resumes.length > 0 ? (
+      { 
+        resumes.length > 0 ? (
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "16px" }}>
           {resumes.map((resume) => (
             <div key={resume.id} style={{ padding: "16px", border: "1px solid #ccc", borderRadius: "8px", boxShadow: "2px 2px 6px rgba(0, 0, 0, 0.1)" }}>

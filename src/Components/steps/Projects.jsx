@@ -1,10 +1,15 @@
 import React, { useState, useEffect } from "react";
 
 export default function Projects({ data, updateData }) {
-  const [projects, setProjects] = useState(data || []);
+  const [projects, setProjects] = useState(() => {
+    const savedProjects = localStorage.getItem("projects");
+    return savedProjects ? JSON.parse(savedProjects) : data || [];
+  });
+
   const [newProject, setNewProject] = useState({ name: "", description: "", link: "", techStack: "" });
 
   useEffect(() => {
+    localStorage.setItem("projects", JSON.stringify(projects));
     updateData(projects);
   }, [projects]);
 
@@ -17,6 +22,11 @@ export default function Projects({ data, updateData }) {
 
   const removeProject = (index) => {
     setProjects((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const clearProjects = () => {
+    setProjects([]);
+    localStorage.removeItem("projects");
   };
 
   const handleChange = (e) => {
@@ -41,19 +51,6 @@ export default function Projects({ data, updateData }) {
             />
           </div>
           <div>
-            <label htmlFor="link" className="text-[#46464e] block mb-1">Project Link</label>
-            <input
-              id="link"
-              name="link"
-              value={newProject.link}
-              onChange={handleChange}
-              placeholder="Enter project link (optional)"
-              className="w-full p-2 border rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
-            />
-          </div>
-        </div>
-
-        <div>
           <label htmlFor="techStack" className="text-[#46464e] block mb-1">Tech Stack</label>
           <input
             id="techStack"
@@ -64,6 +61,9 @@ export default function Projects({ data, updateData }) {
             className="w-full p-2 border rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
           />
         </div>
+        </div>
+
+        
 
         <div>
           <label htmlFor="description" className="text-[#46464e] block mb-1">Project Description</label>
@@ -119,7 +119,16 @@ export default function Projects({ data, updateData }) {
           </ul>
         )}
       </div>
+      {projects.length > 0 && (
+        <button
+          onClick={clearProjects}
+          className="mt-4 bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700"
+        >
+          Clear All Projects
+        </button>
+      )}
     </div>
   );
 }
+
 

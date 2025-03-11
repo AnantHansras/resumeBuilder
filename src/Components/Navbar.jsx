@@ -69,12 +69,12 @@ const navItems = [
         description: "Explore industry-specific resume samples for inspiration.", 
         href: "/example-resume" 
       },
-      // { 
-      //   name: "Your Resumes", 
-      //   icon: FileText, // Represents lists or examples of resumes
-      //   description: "You can see and download all your created resumes here", 
-      //   href: "/your-resume" 
-      // },
+      { 
+        name: "Your Resumes", 
+        icon: FileText, // Represents lists or examples of resumes
+        description: "You can see and download all your created resumes here", 
+        href: "/your-resume" 
+      },
       // { 
       //   name: "Improve Resume", 
       //   icon: Settings2, // Represents optimization and fine-tuning

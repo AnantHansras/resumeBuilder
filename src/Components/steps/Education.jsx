@@ -1,14 +1,20 @@
 import React, { useState, useEffect } from "react";
 
 export default function Education({ data, updateData }) {
-  const [formData, setFormData] = useState({
-    tenth: { name: "", year: "", percentage: "" },
-    twelfth: { name: "", year: "", percentage: "" },
-    higher: { name: "", degree: "", year: "", cg: "" },
-    ...data,
+  const [formData, setFormData] = useState(() => {
+    const savedEducation = localStorage.getItem("education");
+    return savedEducation
+      ? JSON.parse(savedEducation)
+      : {
+          tenth: { name: "", year: "", percentage: "" },
+          twelfth: { name: "", year: "", percentage: "" },
+          higher: { name: "", degree: "", year: "", percentage: "" },
+          ...data,
+        };
   });
 
   useEffect(() => {
+    localStorage.setItem("education", JSON.stringify(formData));
     updateData(formData);
   }, [formData]);
 
@@ -19,6 +25,15 @@ export default function Education({ data, updateData }) {
       ...prev,
       [level]: { ...prev[level], [field]: value },
     }));
+  };
+
+  const clearEducation = () => {
+    setFormData({
+      tenth: { name: "", year: "", percentage: "" },
+      twelfth: { name: "", year: "", percentage: "" },
+      higher: { name: "", degree: "", year: "", percentage: "" },
+    });
+    localStorage.removeItem("education");
   };
 
   return (
@@ -82,13 +97,20 @@ export default function Education({ data, updateData }) {
                 name={`${key}.percentage`}
                 value={formData[key].percentage}
                 onChange={handleChange}
-                placeholder="Enter percentage/cgpa"
+                placeholder="Enter percentage/CGPA"
                 className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ffc85e] focus:border-[#ffc85e]"
               />
             </div>
           </div>
         </div>
       ))}
+      <button
+        onClick={clearEducation}
+        className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600"
+      >
+        Clear All Education
+      </button>
     </div>
   );
 }
+

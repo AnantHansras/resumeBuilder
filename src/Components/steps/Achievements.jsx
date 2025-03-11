@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Achievements({ data, updateData }) {
-  const [achievements, setAchievements] = useState(data || []);
+  const [achievements, setAchievements] = useState(() => {
+    // Retrieve stored data if available, otherwise use props data
+    const savedAchievements = localStorage.getItem("achievements");
+    return savedAchievements ? JSON.parse(savedAchievements) : data || [];
+  });
+
   const [newAchievement, setNewAchievement] = useState("");
+
+  useEffect(() => {
+    // Save achievements to localStorage whenever it changes
+    localStorage.setItem("achievements", JSON.stringify(achievements));
+    updateData(achievements)
+  }, [achievements]);
 
   const addAchievement = () => {
     if (newAchievement.trim() !== "") {
@@ -17,6 +28,11 @@ export default function Achievements({ data, updateData }) {
     const updatedAchievements = achievements.filter((_, i) => i !== index);
     setAchievements(updatedAchievements);
     updateData(updatedAchievements);
+  };
+
+  const clearAchievements = () => {
+    setAchievements([]);
+    localStorage.removeItem("achievements");
   };
 
   return (
@@ -55,6 +71,13 @@ export default function Achievements({ data, updateData }) {
             </li>
           ))}
         </ul>
+        {achievements.length > 0 && (
+          <button 
+            onClick={clearAchievements}
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+            Clear All Achievements
+          </button>
+        )}
       </div>
     </div>
   );

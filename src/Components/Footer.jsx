@@ -23,7 +23,7 @@ const Footer = () => {
             <p className="text-[#94A3B8] text-sm leading-relaxed">
               We share knowledge, tips, and tools to help everyone find their dream job.
             </p>
-            <button className="bg-[#FCD34D] hover:bg-[#fbbf24] text-black text-xs rounded-full px-3 py-2 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(252,211,77,0.3)] active:scale-95">
+            <button href='create-resume' className="bg-[#FCD34D] hover:bg-[#fbbf24] text-black text-xs rounded-full px-3 py-2 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(252,211,77,0.3)] active:scale-95">
               Create My Resume
             </button>
             <div className="flex gap-6  items-center">

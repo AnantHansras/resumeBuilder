@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Eye } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import PersonalInfo from "./steps/PersonalInfo";
 import Education from "./steps/Education";
 import Skills from "./steps/Skills";
@@ -9,12 +8,16 @@ import Experience from "./steps/Experience";
 import Achievements from "./steps/Achievements";
 import Others from "./steps/Others";
 import ProgressIndicator from "./ProgressIndicator";
-import { useLocation } from "react-router-dom";
 
 const steps = ["Personal Info", "Education", "Skills", "Achievements", "Projects", "Experience", "Others"];
 
 export default function MultiStepForm() {
-  const [currentStep, setCurrentStep] = useState(0);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  // Retrieve saved step or default to 0
+  const savedStep = parseInt(localStorage.getItem("currentStep")) || 0;
+  const [currentStep, setCurrentStep] = useState(savedStep);
   const [formData, setFormData] = useState({
     personalInfo: {},
     education: {},
@@ -25,18 +28,29 @@ export default function MultiStepForm() {
     others: [],
   });
 
-  const location = useLocation();
-  const navigate = useNavigate();
-  const formData1 = location.state?.formData || {};
-
+  // Retrieve stored form data if available
   useEffect(() => {
-    setFormData(formData1);
+    const storedFormData = localStorage.getItem("formData");
+    if (storedFormData) {
+      setFormData(JSON.parse(storedFormData));
+    } else if (location.state?.formData) {
+      setFormData(location.state.formData);
+    }
   }, []);
+
+  // Save step whenever it changes
+  useEffect(() => {
+    localStorage.setItem("currentStep", currentStep);
+  }, [currentStep]);
+
+  // Save form data whenever it updates
+  useEffect(() => {
+    localStorage.setItem("formData", JSON.stringify(formData));
+  }, [formData]);
 
   const handleNext = () => {
     if (currentStep === steps.length - 1) {
       navigate("/resume", { state: { formData } });
-      console.log(formData);
     } else {
       setCurrentStep((prev) => Math.min(prev + 1, steps.length - 1));
     }
@@ -76,16 +90,18 @@ export default function MultiStepForm() {
       <ProgressIndicator steps={steps} currentStep={currentStep} />
       <div style={{ marginTop: "4rem", marginBottom: "2rem" }}>{renderStep()}</div>
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "2rem" }}>
-        <button 
-          onClick={handlePrev} 
-          disabled={currentStep === 0} 
-          style={{ padding: "0.75rem 1.5rem", border: "1px solid #07142b", backgroundColor: "transparent", color: "#07142b", borderRadius: "4px", cursor: "pointer", opacity: currentStep === 0 ? 0.5 : 1 }}
-        >
-          Previous
-        </button>
+      <button 
+  onClick={handlePrev} 
+  disabled={currentStep === 0} 
+  className={`px-6 py-3 border border-[#07142b] text-[#07142b] rounded-md cursor-pointer transition active:scale-95
+    ${currentStep === 0 ? "opacity-50 cursor-not-allowed" : "hover:bg-[#07142b] hover:text-white"}`}
+>
+  Previous
+</button>
+
         {currentStep >= 3 && (
           <button 
-          className="flex justify-center items-center border border-gray-300 rounded-xl p-3 bg-[#ffc85e] text-[#07142b] hover:bg-[#ffd78e]"
+            className="flex justify-center items-center border border-gray-300 rounded-xl p-3 bg-[#ffc85e] text-[#07142b] hover:bg-[#ffd78e] active:scale-95"
             onClick={() => navigate("/resume", { state: { formData } })} 
             style={{ cursor: "pointer"}}
           >
@@ -93,13 +109,15 @@ export default function MultiStepForm() {
           </button>
         )}
         <button 
-          onClick={handleNext} 
-          className="hover:opacity-50"
-          style={{ padding: "0.75rem 1.5rem", backgroundColor: "#07142b", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}
-        >
-          {currentStep === steps.length - 1 ? "Submit" : "Next"}
-        </button>
+  onClick={handleNext} 
+  className="px-6 py-3 bg-[#07142b] text-white hover:text-[#07142b] border border-[#07142b] rounded-md cursor-pointer transition 
+             hover:bg-transparent hover:shadow-lg active:scale-95"
+>
+  {currentStep === steps.length - 1 ? "Submit" : "Next"}
+</button>
+
       </div>
     </div>
   );
 }
+

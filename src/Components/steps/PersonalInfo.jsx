@@ -1,14 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function PersonalInfo({ data, updateData }) {
-  const [formData, setFormData] = useState({
-    name: "",
-    phone: "",
-    email: "",
-    dob: "",
-    position: "",
-    ...data,
+  const [formData, setFormData] = useState(() => {
+    // Retrieve stored data if available, otherwise use props data
+    const savedData = localStorage.getItem("personalInfo");
+    return savedData ? JSON.parse(savedData) : { 
+      name: "", phone: "", email: "", dob: "", position: "", ...data 
+    };
   });
+
+  useEffect(() => {
+    // Save formData to localStorage whenever it changes
+    localStorage.setItem("personalInfo", JSON.stringify(formData));
+    updateData(formData)
+  }, [formData]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;

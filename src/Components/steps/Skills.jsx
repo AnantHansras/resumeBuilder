@@ -1,8 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Skills({ data, updateData }) {
-  const [skills, setSkills] = useState(data || []);
+  const [skills, setSkills] = useState(() => {
+    // Retrieve stored data if available, otherwise use props data
+    const savedSkills = localStorage.getItem("skills");
+    return savedSkills ? JSON.parse(savedSkills) : data || [];
+  });
+
   const [newSkill, setNewSkill] = useState("");
+
+  useEffect(() => {
+    // Save skills to localStorage whenever it changes
+    localStorage.setItem("skills", JSON.stringify(skills));
+    updateData(skills)
+  }, [skills]);
 
   const addSkill = () => {
     if (newSkill.trim() !== "") {
@@ -19,6 +30,11 @@ export default function Skills({ data, updateData }) {
     updateData(updatedSkills);
   };
 
+  const clearSkills = () => {
+    setSkills([]);
+    localStorage.removeItem("skills");
+  };
+
   return (
     <div className="space-y-4">
       <h2 className="text-2xl font-bold text-[#07142b] mb-4">Skills</h2>
@@ -30,7 +46,7 @@ export default function Skills({ data, updateData }) {
           <input
             id="newSkill"
             value={newSkill}
-            placeholder="Enter only 1 skill at a time(e.g. React)"
+            placeholder="Enter only 1 skill at a time (e.g. React)"
             onChange={(e) => setNewSkill(e.target.value)}
             className="flex-grow px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ffc85e] focus:border-[#ffc85e]"
           />
@@ -55,6 +71,13 @@ export default function Skills({ data, updateData }) {
             </li>
           ))}
         </ul>
+        {skills.length > 0 && (
+          <button 
+            onClick={clearSkills}
+            className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md hover:bg-red-600">
+            Clear All Skills
+          </button>
+        )}
       </div>
     </div>
   );

@@ -2,8 +2,8 @@ import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Zap, Shield, CheckCircle } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
-import home1 from '../assets/home1.jpg'
-import home2 from '../assets/home2.jpg'
+import home1 from '../assets/home1.avif'
+import home2 from '../assets/home2.avif'
 import Footer from '../Components/Footer'
 const Home = () => {
   return (
@@ -66,7 +66,7 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.6 + index * 0.2 }}
-              className="bg-white p-8 rounded-lg shadow-lg text-center"
+              className="bg-white p-8 rounded-lg shadow-lg text-center flex flex-col items-center"
             >
               {feature.icon}
               <h2 className="text-2xl font-semibold text-[#07142b] mb-4">{feature.title}</h2>
