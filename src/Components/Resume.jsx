@@ -4,13 +4,11 @@ import { FaArrowLeft, FaDownload, FaSave } from "react-icons/fa";
 import { addResume } from "../Services/resumeAPI";
 import { useDispatch } from "react-redux";
 import Temp1 from "./temp1";
-import Temp2 from './Temp2'
+import Temp2 from "./Temp2";
 import Temp3 from "./Temp3";
 import Temp4 from "./Temp4";
 import Temp5 from "./Temp5";
 import Temp6 from "./Temp6";
-import html2canvas from "html2canvas";
-import jsPDF from "jspdf";
 
 const Resume = () => {
   const location = useLocation();
@@ -30,32 +28,42 @@ const Resume = () => {
     dispatch(addResume(formData, token));
   };
 
-const handleDownload = async () => {
-  const resumeElement = resumeRef.current;
-  if (!resumeElement) return;
+  const handleDownload = () => {
+    const resumeContent = resumeRef.current;
+    const originalDisplay = document.body.innerHTML;
 
-  const scaleFactor = window.devicePixelRatio || 2; // Adjusts resolution dynamically
+    // Hide everything except the resume
+    document.body.innerHTML = resumeContent.innerHTML;
+    window.print();
 
-  const canvas = await html2canvas(resumeElement, {
-    scale: scaleFactor, // Uses device resolution for better quality
-    useCORS: true, // Ensures external fonts and images load correctly
-  });
-
-  const imgData = canvas.toDataURL("image/png");
-  const pdf = new jsPDF("p", "mm", "a4");
-
-  const pdfWidth = 210; // A4 width in mm
-  const pdfHeight = 297; // A4 height in mm
-  const imgWidth = pdfWidth;
-  const imgHeight = (canvas.height * imgWidth) / canvas.width;
-
-  pdf.addImage(imgData, "PNG", 0, 0, imgWidth, imgHeight);
-  pdf.save("resume.pdf");
-};
-
+    // Restore original content after printing
+    document.body.innerHTML = originalDisplay;
+    window.location.reload(); // Reload to restore event listeners
+  };
 
   return (
     <div className="bg-[#f9faff] font-sans pb-10">
+      {/* Print-specific styles */}
+      <style>
+        {`
+          @media print {
+            body * {
+              visibility: hidden;
+            }
+            #resume-content, #resume-content * {
+              visibility: visible;
+            }
+            #resume-content {
+              position: absolute;
+              left: 0;
+              top: 0;
+              width: 100%;
+            }
+          }
+        `}
+      </style>
+
+      {/* Buttons Section (Hidden during print) */}
       <div className="no-print relative flex justify-center gap-3 p-4">
         <button
           onClick={handleBack}
@@ -79,6 +87,7 @@ const handleDownload = async () => {
         </button>
       </div>
 
+      {/* Resume Content */}
       <div
         id="resume-content"
         ref={resumeRef}

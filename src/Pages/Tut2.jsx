@@ -62,7 +62,7 @@ export default function Tut1() {
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="min-h-screen bg-[#f9faff]">
       <div className="container mx-auto px-4 py-8">
         <motion.div className="text-center mb-12" initial={{ y: 0, opacity: 1 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, type: "spring" }}>
-        <h1 className="text-3xl font-bold text-[#07142b] mb-4">Master the Art of Resume Design</h1> <p className="text-[#46464e] max-w-2xl mx-auto">Enhance your resume with expert design and formatting tips. Explore our collection of tutorial videos to create a professional, ATS-friendly resume that stands out.</p>
+        <h1 className="text-3xl font-bold text-[#07142b] mb-4">Master the Art of <span className="text-[#ffc85e]">Resume</span> Design</h1> <p className="text-[#46464e] max-w-2xl mx-auto">Enhance your resume with expert design and formatting tips. Explore our collection of tutorial videos to create a professional, ATS-friendly resume that stands out.</p>
         </motion.div>
 
         {loading ? (

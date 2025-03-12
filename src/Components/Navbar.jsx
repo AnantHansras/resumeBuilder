@@ -57,12 +57,12 @@ const navItems = [
         description: "Choose from professional templates and build your resume.", 
         href: "/create-resume" 
       },
-      // {
-      //   name: "Templates",
-      //   icon: Layout, // Represents structured document layouts, fitting for resume templates
-      //   description: "Browse professionally designed templates to craft your perfect resume.",
-      //   href: "/templates"
-      // },
+      {
+        name: "Templates",
+        icon: Layout, // Represents structured document layouts, fitting for resume templates
+        description: "Browse  templates to craft your perfect resume.",
+        href: "/templates"
+      },
       { 
         name: "Resume Examples", 
         icon: ClipboardList, // Represents lists or examples of resumes

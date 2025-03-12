@@ -129,7 +129,7 @@ const Home = () => {
               of recruiters and lands you your dream job.
             </p>
             <a
-              href="/example-resume"
+              href="/templates"
               className="inline-flex items-center px-6 py-3 text-lg font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
             >
               Explore Templates <ArrowRight className="ml-2" />
