@@ -57,7 +57,7 @@ const Resume = () => {
               position: absolute;
               left: 0;
               top: 0;
-              width: 100%;
+              width: 120%;
             }
           }
         `}
@@ -98,7 +98,7 @@ const Resume = () => {
           boxSizing: "border-box",
         }}
       >
-        <Temp6 formData={formData} />
+        <Temp3 formData={formData} />
       </div>
     </div>
   );
