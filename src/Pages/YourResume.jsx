@@ -16,6 +16,7 @@ export default function YourResume() {
         .then((res) => {
           if (res && res.data && res.data.resumes) {
             setResumes(res.data.resumes);
+            
           }
         })
         .catch((error) => {

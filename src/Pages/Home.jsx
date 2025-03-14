@@ -42,7 +42,7 @@ const Home = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-24"
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16"
         >
           {[
             {

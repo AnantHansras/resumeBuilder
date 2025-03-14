@@ -4,7 +4,7 @@ const Temp3 = ({ formData }) => {
   return (
     <div className="font-sans flex" style={{ width: "794px", height: "1123px" }}>
       {/* Left Sidebar */}
-      <div className="w-1/3 bg-gray-800 text-white p-6 rounded-l-lg">
+      <div className="w-1/3  bg-gray-800 text-white p-6 rounded-l-lg">
         {formData?.personalInfo && (
           <div className="mb-8">
             {formData.personalInfo.name && (

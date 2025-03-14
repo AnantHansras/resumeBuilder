@@ -1,22 +1,37 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { setTemplate } from "../Slices/template";
+import t1 from '../assets/Templates/t1.png';
+import t2 from '../assets/Templates/t2.png';
+import t3 from '../assets/Templates/t3.png';
+import t4 from '../assets/Templates/t4.png';
+import t5 from '../assets/Templates/t5.png';
+import t6 from '../assets/Templates/t6.png';
+import t7 from '../assets/Templates/t7.png';
+import t8 from '../assets/Templates/t8.png';
+import t9 from '../assets/Templates/t9.png';
 
-import t1 from '../assets/Templates/t1.png'
-import t2 from '../assets/Templates/t2.png'
-import t3 from '../assets/Templates/t3.png'
-import t4 from '../assets/Templates/t4.png'
-import t5 from '../assets/Templates/t5.png'
 const Templates = () => {
+  const navigate = useNavigate();
   const [hovered, setHovered] = useState(null);
-  
+  const dispatch = useDispatch();
   const templates = [
-    { title: "Modern Resume", src: t1 },
-    { title: "Professional Resume", src: t2 },
-    { title: "Creative Resume", src: t3 },
-    { title: "Modern Resume", src: t4 },
-    { title: "Professional Resume", src: t5 },
-    { title: "Creative Resume", src: "https://via.placeholder.com/300x400?text=Creative" }
+    { title: "Modern Resume 1", src: t1 },
+    { title: "Professional Resume 1", src: t2 },
+    { title: "Creative Resume 1", src: t3 },
+    { title: "Modern Resume 2", src: t4 },
+    { title: "Professional Resume 2", src: t5 },
+    { title: "Creative Resume 2", src: t6 },
+    { title: "Modern Resume 3", src: t7 },
+    { title: "Professional Resume 3", src: t8 },
+    { title: "Creative Resume 3", src: t9 },
   ];
-
+  
+  const handleTemplateClick = (index) => {
+    dispatch(setTemplate(index+1));
+    navigate('/create-resume')
+  };
   return (
     <div className="bg-[#f9faff] h-full -my-8 py-8">
     <div className="max-w-5xl mx-auto md:px-8 w-full my-8 ">
@@ -38,6 +53,7 @@ const Templates = () => {
             key={index}
             onMouseEnter={() => setHovered(index)}
             onMouseLeave={() => setHovered(null)}
+            onClick={() => handleTemplateClick(index)}
             className={`rounded-lg relative cursor-pointer bg-gray-100 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out ${
               hovered !== null && hovered !== index ? "blur-sm scale-[0.98]" : ""
             }`}

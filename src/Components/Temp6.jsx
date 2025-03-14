@@ -1,148 +1,225 @@
-const Temp6 = ({ formData }) => {
-  const getSkillLevel = (index) => {
-    const levels = [85, 90, 75, 95, 80, 70, 85, 90]
-    return levels[index % levels.length]
-  }
+import { Mail, Phone, Calendar } from "lucide-react"
 
+const Temp8 = ({ formData }) => {
   return (
-    <div className="font-sans bg-white relative" style={{ width: "794px", height: "1123px", padding: "40px" }}>
-      {/* Header */}
+    <div className="font-sans flex flex-col" style={{ width: "794px", height: "1123px" }}>
+      {/* Full-width header with bg-gray-800 */}
       {formData?.personalInfo && (
-        <header className="flex justify-between items-center mb-4 pb-2 border-b border-gray-300">
-          <div>
-            <h1 className="text-3xl font-bold text-black tracking-wide">{formData.personalInfo.name}</h1>
-            <p className="text-blue-500 font-medium">{formData.personalInfo.position}</p>
-
-            <div className="flex gap-4 mt-2 text-sm">
+        <div className="w-full bg-gray-800 text-white p-6 rounded-t-lg">
+          <div className="flex justify-between items-start">
+            <div>
+              {formData.personalInfo.name && <h1 className="text-xl font-bold mb-2">{formData.personalInfo.name}</h1>}
+              {formData.personalInfo.position && (
+                <p className="text-gray-300 font-[500] text-xs uppercase">{formData.personalInfo.position}</p>
+              )}
+            </div>
+            <div className="space-y-2 text-[0.65rem]">
               {formData.personalInfo.phone && (
-                <div className="flex items-center gap-1">
-                  <span className="text-blue-500">📱</span>
+                <div className="flex items-center justify-end">
                   <span>{formData.personalInfo.phone}</span>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center ml-2">
+                    <Phone className="w-4 h-4" />
+                  </div>
                 </div>
               )}
               {formData.personalInfo.email && (
-                <div className="flex items-center gap-1">
-                  <span className="text-blue-500">✉️</span>
+                <div className="flex items-center justify-end">
                   <span>{formData.personalInfo.email}</span>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center ml-2">
+                    <Mail className="w-4 h-4" />
+                  </div>
+                </div>
+              )}
+              {formData.personalInfo.dob && (
+                <div className="flex items-center justify-end">
+                  <span>{formData.personalInfo.dob}</span>
+                  <div className="w-6 h-6 rounded-full flex items-center justify-center ml-2">
+                    <Calendar className="w-4 h-4" />
+                  </div>
                 </div>
               )}
             </div>
           </div>
-          <div className="w-24 h-24 rounded-full bg-gray-200 flex items-center justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-16 w-16 text-gray-400"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={1}
-                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-              />
-            </svg>
-          </div>
-        </header>
+        </div>
       )}
 
-      <div className="grid grid-cols-3 gap-6">
-        {/* Left Column */}
-        <div className="col-span-1">
-          {/* Education */}
-          {formData.education && (
-            <section className="mb-6">
-              <h2 className="text-lg font-bold uppercase border-b border-gray-300 pb-1 mb-3">Education</h2>
-              <div className="space-y-4">
-                {Object.values(formData.education).map((edu, index) => (
-                  <div key={index} className="relative">
-                    <h3 className="font-semibold text-sm">{edu.name}</h3>
-                    <p className="italic text-sm text-gray-700">{edu.degree || "Senior Secondary (XII)"}</p>
-                    <p className="text-xs text-gray-600">
-                      {edu.cg ? `CGPA: ${edu.cg}` : `Percentage: ${edu.percentage}`}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-
-          {/* Skills */}
-          {formData.skills?.length > 0 && (
-            <section className="mb-6">
-              <h2 className="text-lg font-bold uppercase border-b border-gray-300 pb-1 mb-3">Skills</h2>
-              <div className="grid grid-cols-2 gap-2">
-                {formData.skills.map((skill, index) => (
-                  <div key={index} className="text-sm bg-gray-100 px-2 py-1 rounded">
-                    {skill}
-                  </div>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
-
-        {/* Right Column */}
-        <div className="col-span-2">
-          {/* Key Achievements */}
-          <section className="mb-6">
-            <h2 className="text-lg font-bold uppercase border-b border-gray-300 pb-1 mb-3">Key Achievements</h2>
-            <div className="space-y-3">
-              <div className="flex gap-2">
-                <div className="text-blue-500 flex-shrink-0">🏆</div>
-                <div>
-                  <h3 className="font-semibold text-sm">Cyber Olympiad Achievement</h3>
-                  <p className="text-xs text-gray-700">
-                    Secured Top Rank 1st and State Rank 24th in 13th National Cyber Olympiad.
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-2">
-                <div className="text-blue-500 flex-shrink-0">🥇</div>
-                <div>
-                  <h3 className="font-semibold text-sm">Code Gladiator 2020 Semi Finalist</h3>
-                  <p className="text-xs text-gray-700">Semi Finalist at Code Gladiator 2020.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
+      {/* Main content with two columns */}
+      <div className="flex flex-1">
+        {/* Left Content */}
+        <div className="w-2/3 bg-white p-6">
           {/* Experience */}
-          {formData.experience?.length > 0 && (
-            <section className="mb-6">
-              <h2 className="text-lg font-bold uppercase border-b border-gray-300 pb-1 mb-3">Experience</h2>
+          {Array.isArray(formData.experience) && formData.experience.length > 0 && (
+            <section className="mb-8">
+              <h2 className="text-lg font-bold mb-4 text-gray-800 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-800">
+                EXPERIENCE
+              </h2>
               {formData.experience.map((exp, index) => (
-                <div key={index} className="relative mb-4">
-                  <h3 className="font-semibold text-sm text-gray-900">{exp.position}</h3>
-                  <p className="italic text-sm text-blue-500">{exp.company}</p>
-                  <p className="text-xs text-gray-700 mt-1">{exp.description}</p>
+                <div
+                  key={index}
+                  className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200"
+                >
+                  <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+                  <h3 className="font-semibold text-[0.75rem] text-gray-800">
+                    {exp.position} <span className="font-normal">at</span> {exp.company}
+                  </h3>
+                  <p className="text-[0.65rem] font-sans text-gray-600 mb-2">{exp.duration}</p>
+                  <p className="text-[0.7rem] font-sans text-gray-700">{exp.description}</p>
                 </div>
               ))}
             </section>
           )}
 
           {/* Projects */}
-          {formData.projects?.length > 0 && (
-            <section className="mb-6">
-              <h2 className="text-lg font-bold uppercase border-b border-gray-300 pb-1 mb-3">Projects</h2>
-              {formData.projects.map((proj, index) => (
-                <div key={index} className="relative mb-4">
-                  <h3 className="font-semibold text-sm text-gray-900">{proj.name}</h3>
-                  <p className="italic text-sm text-blue-500">{proj.techStack}</p>
-                  <p className="text-xs text-gray-700 mt-1">{proj.description}</p>
+          <section className="mb-8">
+            <h2 className="text-lg font-bold mb-4 text-gray-800 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-800">
+              PROJECTS
+            </h2>
+            {formData.projects &&
+              formData.projects.length > 0 &&
+              formData.projects.map((proj, index) => (
+                <div
+                  key={index}
+                  className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200"
+                >
+                  <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+                  <div className="flex justify-between items-baseline">
+                    <h3 className="font-semibold font-sans text-[0.75rem] text-gray-800">{proj.name}</h3>
+                    {proj.link && (
+                      <a
+                        href={proj.link}
+                        className="text-gray-600 text-[0.65rem] underline"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Project Link
+                      </a>
+                    )}
+                  </div>
+                  <p className="italic text-[0.7rem] text-gray-600 mb-1">{proj.techStack}</p>
+                  <p className="text-gray-700 font-sans text-[0.7rem]">{proj.description}</p>
                 </div>
+              ))}
+          </section>
+
+          {/* Achievements */}
+          {formData?.achievements?.length > 0 && (
+            <section className="mb-4">
+              <h2 className="text-lg font-bold mb-4 text-gray-800 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-800">
+                ACHIEVEMENTS
+              </h2>
+              <ul className="space-y-2 pl-6">
+                {formData.achievements.map((a, index) => (
+                  <li
+                    className="text-[0.7rem] font-sans relative pl-4 before:content-[''] before:absolute before:left-0 before:top-[0.5em] before:w-2 before:h-2 before:bg-gray-800 before:rounded-full"
+                    key={index}
+                  >
+                    {a}
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {formData?.others?.length > 0 && (
+            <section>
+              <h2 className="text-lg font-bold mb-4 border-b border-gray-600 pb-2">OTHER</h2>
+              {formData.others.map((item, index) => (
+                <p key={index} className="text-[0.7rem] mb-2">
+                  {item?.text}{" "}
+                  {item?.link && (
+                    <a href={item.link} className="text-gray-300 underline">
+                      [Link]
+                    </a>
+                  )}
+                </p>
               ))}
             </section>
           )}
+        </div>
+
+        {/* Right Sidebar */}
+        <div className="w-1/3 bg-white text-gray-800 p-6">
+          {/* Skills */}
+          {formData.skills && formData.skills.length > 0 && (
+  <section className="mb-8">
+    <h2 className="text-lg font-bold mb-4 text-gray-800 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-800">
+      SKILLS
+    </h2>
+    <div className="relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+      <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+      <div className="flex flex-wrap gap-2">
+        {formData.skills.map((skill, index) => (
+          <span
+            key={index}
+            className="bg-gray-200 rounded-full px-3 py-1 text-[14px] font-bold inline-block"
+          >
+            {skill}
+          </span>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+
+          {/* Education */}
+{formData.education && (
+  <section className="mb-8">
+    <h2 className="text-lg font-bold mb-4 text-gray-800 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-1 before:bg-gray-800">
+      EDUCATION
+    </h2>
+
+    {formData.education.higher && (
+      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+        <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.higher.name}</h3>
+        <p className="italic text-[0.7rem] text-gray-600">{formData.education.higher.degree}</p>
+        <p className="text-[0.7rem] text-gray-500">
+          {formData.education.higher.year} |{" "}
+          {formData.education.higher.percentage <= 10
+            ? `CGPA: ${formData.education.higher.percentage}`
+            : `Percentage: ${formData.education.higher.percentage}%`}
+        </p>
+      </div>
+    )}
+
+    {formData.education.twelfth && (
+      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+        <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.twelfth.name}</h3>
+        <p className="italic text-[0.7rem] text-gray-600">Senior Secondary (XII)</p>
+        <p className="text-[0.7rem] text-gray-500">
+          {formData.education.twelfth.year} |{" "}
+          {formData.education.twelfth.percentage <= 10
+            ? `CGPA: ${formData.education.twelfth.percentage}`
+            : `Percentage: ${formData.education.twelfth.percentage}%`}
+        </p>
+      </div>
+    )}
+
+    {formData.education.tenth && (
+      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+        <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.tenth.name}</h3>
+        <p className="italic text-[0.7rem] text-gray-600">Secondary (X)</p>
+        <p className="text-[0.7rem] text-gray-500">
+          {formData.education.tenth.year} |{" "}
+          {formData.education.tenth.percentage <= 10
+            ? `CGPA: ${formData.education.tenth.percentage}`
+            : `Percentage: ${formData.education.tenth.percentage}%`}
+        </p>
+      </div>
+    )}
+  </section>
+)}
+
+
+          {/* Others */}
         </div>
       </div>
     </div>
   )
 }
 
-export default Temp6
-
-
-  
+export default Temp8
   

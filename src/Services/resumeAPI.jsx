@@ -61,10 +61,11 @@ export function getAllResume(token) {
           throw new Error(response.data.message)
         }
   
-        toast.success("Resume Deleted Succesfully")
+        toast.success("Resume Fetched Succesfully")
+        return response
       } catch (error) {
         console.log("GETALLRESUME API ERROR............", error)
-        toast.error("Could Not delete Resume")
+        toast.error("Could Not Fetch Resume")
       }
       dispatch(setLoading(false))
     }

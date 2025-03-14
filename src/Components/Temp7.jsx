@@ -1,12 +1,20 @@
+//from-teal-500 to-emerald-600
+//from-purple-500 to-indigo-600
+
+//border-teal-500
+//border-purple-500
+
+//text-teal-600
+//text-purple-600
 import React from "react";
 import { Mail, Phone, Calendar } from "lucide-react";
-const Temp5 = ({ formData }) => {
+const Temp7 = ({ formData }) => {
   return (
     <div className="font-sans bg-white" style={{ width: "794px", height: "1123px", padding: "50px" }}>
       {/* Header with circular design element */}
       {formData?.personalInfo && (
-        <header className="relative mb-0 pb-6 ">
-          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-purple-500 to-indigo-600 rounded-full -z-10 opacity-10"></div>
+        <header className="relative mb-0 pb-6">
+          <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-full -z-10 opacity-10"></div>
           <div className="flex justify-between items-start">
             <div>
               {formData.personalInfo.name && (
@@ -15,7 +23,7 @@ const Temp5 = ({ formData }) => {
                 </h1>
               )}
               {formData.personalInfo.position && (
-                <p className="text-gray-600 font-[500] text-sm uppercase mb-4 border-l-4 border-purple-500 pl-2">
+                <p className="text-gray-600 font-[500] text-sm uppercase mb-4 border-l-4 border-teal-500 pl-2">
                   {formData.personalInfo.position}
                 </p>
               )}
@@ -24,7 +32,7 @@ const Temp5 = ({ formData }) => {
               {formData.personalInfo.phone && (
                 <div className="flex items-center justify-end">
                   <span>{formData.personalInfo.phone}</span>
-                  <div className="ml-2 w-6 h-6  rounded-full flex items-center justify-center text-purple-600">
+                  <div className="ml-2 w-6 h-6  rounded-full flex items-center justify-center text-teal-600">
                     <span><Phone className="inline w-4 h-4 mr-1" /></span>
                   </div>
                 </div>
@@ -32,7 +40,7 @@ const Temp5 = ({ formData }) => {
               {formData.personalInfo.email && (
                 <div className="flex items-center justify-end">
                   <span>{formData.personalInfo.email}</span>
-                  <div className="ml-2 w-6 h-6 rounded-full flex items-center justify-center text-purple-600">
+                  <div className="ml-2 w-6 h-6 rounded-full flex items-center justify-center text-teal-600">
                     <span><Mail className="inline w-4 h-4 mr-1" /></span>
                   </div>
                 </div>
@@ -40,7 +48,7 @@ const Temp5 = ({ formData }) => {
               {formData.personalInfo.dob && (
                 <div className="flex items-center justify-end">
                   <span>{formData.personalInfo.dob}</span>
-                  <div className="ml-2 w-6 h-6  rounded-full flex items-center justify-center text-purple-600">
+                  <div className="ml-2 w-6 h-6  rounded-full flex items-center justify-center text-teal-600">
                     <span><Calendar className="inline w-4 h-4 mr-1" /></span>
                   </div>
                 </div>
@@ -58,7 +66,7 @@ const Temp5 = ({ formData }) => {
           {/* Experience Card */}
           {Array.isArray(formData.experience) && formData.experience.length > 0 && (
             <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-              <h2 className="text-lg font-bold mb-4 text-purple-600">
+              <h2 className="text-lg font-bold mb-4 text-teal-600">
                 EXPERIENCE
               </h2>
               <div className="space-y-4">
@@ -68,7 +76,7 @@ const Temp5 = ({ formData }) => {
                       <h3 className="font-semibold text-[0.75rem] text-gray-900">
                         {exp.position}
                       </h3>
-                      <div className="px-3 py-1 bg-purple-50 rounded-full text-[0.65rem] text-purple-700">
+                      <div className="px-3 py-1 bg-teal-50 rounded-full text-[0.65rem] text-teal-700">
                         {exp.duration}
                       </div>
                     </div>
@@ -79,7 +87,7 @@ const Temp5 = ({ formData }) => {
                       {exp.description}
                     </p>
                     {index < formData.experience.length - 1 && (
-                      <div className="absolute -bottom-3 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-200 to-transparent"></div>
+                      <div className="absolute -bottom-3 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-200 to-transparent"></div>
                     )}
                   </div>
                 ))}
@@ -89,7 +97,7 @@ const Temp5 = ({ formData }) => {
 
           {/* Projects Card */}
           <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-            <h2 className="text-lg font-bold mb-4 text-purple-600">
+            <h2 className="text-lg font-bold mb-4 text-teal-600">
               PROJECTS
             </h2>
             <div className="grid grid-cols-1 gap-4">
@@ -99,13 +107,13 @@ const Temp5 = ({ formData }) => {
                   <div key={index} className="relative">
                     <div className="flex justify-between items-baseline mb-0">
                       <h3 className="font-semibold font-sans text-[0.75rem] text-gray-900 flex items-center">
-                        <div className="w-2 h-2 bg-purple-500 rounded-full mr-2"></div>
+                        <div className="w-2 h-2 bg-teal-500 rounded-full mr-2"></div>
                         {proj.name}
                       </h3>
                       {proj.link && (
                         <a
                           href={proj.link}
-                          className="text-purple-600 text-[0.65rem] underline"
+                          className="text-teal-600 text-[0.65rem] underline"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -122,7 +130,7 @@ const Temp5 = ({ formData }) => {
                       </p>
                     </div>
                     {index < formData.projects.length - 1 && (
-                      <div className="absolute -bottom-3 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-purple-200 to-transparent"></div>
+                      <div className="absolute -bottom-3 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-teal-200 to-transparent"></div>
                     )}
                   </div>
                 ))}
@@ -132,13 +140,13 @@ const Temp5 = ({ formData }) => {
             {/* Achievements Card */}
           {formData?.achievements?.length > 0 && (
             <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-              <h2 className="text-lg font-bold mb-4 text-purple-600">
+              <h2 className="text-lg font-bold mb-4 text-teal-600">
                 ACHIEVEMENTS
               </h2>
               <ul className="space-y-1">
                 {formData.achievements.map((a, index) => (
                   <li className="text-sm font-sans flex items-start" key={index}>
-                    <div className="w-2 h-2 bg-purple-500 rounded-full mt-1.5 mr-2"></div>
+                    <div className="w-2 h-2 bg-teal-500 rounded-full mt-1.5 mr-2"></div>
                     <span className="text-[0.65rem]">{a}</span>
                   </li>
                 ))}
@@ -152,7 +160,7 @@ const Temp5 = ({ formData }) => {
           {/* Skills Card */}
           {formData.skills && formData.skills.length > 0 && (
             <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-              <h2 className="text-lg font-bold mb-4 text-purple-600">
+              <h2 className="text-lg font-bold mb-4 text-teal-600">
                 SKILLS
               </h2>
               <div className="flex flex-wrap gap-1">
@@ -161,7 +169,7 @@ const Temp5 = ({ formData }) => {
                     key={index}
                     className="inline-block text-[14px] font-bold px-3 py-1 rounded-full"
                     style={{
-                      background: `linear-gradient(135deg, rgba(168,85,247,0.05) 0%, rgba(139,92,246,0.15) 100%)`,
+                      background: 'linear-gradient(135deg, rgba(20, 184, 166, 0.05) 0%, rgba(16, 185, 129, 0.15) 100%)',
                       border: "1px solid rgba(168,85,247,0.2)"
                     }}
                   >
@@ -175,14 +183,14 @@ const Temp5 = ({ formData }) => {
           {/* Education Card */}
           {formData.education && (
             <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-              <h2 className="text-lg font-bold mb-4 text-purple-600">
+              <h2 className="text-lg font-bold mb-4 text-teal-600">
                 EDUCATION
               </h2>
 
               {formData.education?.higher && (
                 <div className="mb-4">
                   <div className="flex items-center mb-1">
-                    <div className="w-2 h-1 bg-purple-500 rounded-full mr-2 -mt-4"></div>
+                    <div className="w-2 h-1 bg-teal-500 rounded-full mr-2 -mt-4"></div>
                     <h3 className="font-semibold text-[0.7rem]">
                       {formData.education.higher.name}
                     </h3>
@@ -202,7 +210,7 @@ const Temp5 = ({ formData }) => {
               {formData.education?.twelfth && (
                 <div className="mb-4">
                   <div className="flex items-center mb-1">
-                    <div className="w-2 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
+                    <div className="w-2 h-1 bg-teal-500 rounded-full mr-2 -mt-6"></div>
                     <h3 className="font-semibold text-[0.7rem]">
                       {formData.education.twelfth.name}
                     </h3>
@@ -222,7 +230,7 @@ const Temp5 = ({ formData }) => {
               {formData.education?.tenth && (
                 <div>
                   <div className="flex items-center mb-1">
-                    <div className="w-2 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
+                    <div className="w-2 h-1 bg-teal-500 rounded-full mr-2 -mt-6"></div>
                     <h3 className="font-semibold text-[0.7rem]">
                       {formData.education.tenth.name}
                     </h3>
@@ -244,16 +252,16 @@ const Temp5 = ({ formData }) => {
           {/* Others Card */}
           {formData?.others?.length > 0 && (
             <div className="bg-gray-50 rounded-lg shadow-sm p-4 border border-gray-200">
-              <h2 className="text-lg font-bold mb-4 text-purple-600">
+              <h2 className="text-lg font-bold mb-4 text-teal-600">
                 OTHER
               </h2>
               {formData.others.map((item, index) => (
                 <p key={index} className="text-[0.7rem] mb-2 flex items-start">
-                  <div className="w-2 h-2 bg-purple-500 rounded-full mt-1.5 mr-2"></div>
+                  <div className="w-2 h-2 bg-teal-500 rounded-full mt-1.5 mr-2"></div>
                   <span>
                     {item?.text}{" "}
                     {item?.link && (
-                      <a href={item.link} className="text-purple-600 underline">
+                      <a href={item.link} className="text-teal-600 underline">
                         [Link]
                       </a>
                     )}
@@ -270,4 +278,4 @@ const Temp5 = ({ formData }) => {
   );
 };
 
-export default Temp5;
+export default Temp7;
