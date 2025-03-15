@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import { Sparkles ,Loader2} from "lucide-react"; 
+import toast from "react-hot-toast";
+import { geminichatSession } from "../../../server/utils/gemini";
 export default function Experience({ data, updateData }) {
   const [experiences, setExperiences] = useState(() => {
     // Retrieve stored data if available, otherwise use props data
@@ -13,6 +15,25 @@ export default function Experience({ data, updateData }) {
     duration: "",
     description: "",
   });
+  const [ailoading,setailoading] = useState(false);
+  const gemini = async () =>{
+    const DataString =  `Position : ${newExperience.position}, Purpose: ${newExperience.description}` ;
+    const basePrompt = "Given a job position and a description of the work done there, generate a concise summary highlighting the key responsibilities, impact, and achievements. If either the position or the description is missing, return only '110011' without any other text.{data}"
+    
+    const PROMPT = basePrompt.replace("{data}", DataString);
+    setailoading(true);
+    const result = await geminichatSession.sendMessage(PROMPT)
+    setailoading(false);
+    const res = result.response.text()
+    if (res.includes("110011")) {
+      console.log(res)
+      toast.error("Provide valid project details")
+  }
+  else{
+    setNewExperience(prev => ({ ...prev, description: res }));
+  }
+    
+  }
 
   useEffect(() => {
     // Save experiences to localStorage whenever it changes
@@ -57,14 +78,35 @@ export default function Experience({ data, updateData }) {
               {field.name.charAt(0).toUpperCase() + field.name.slice(1)}
             </label>
             {field.name === "description" ? (
-              <textarea
-                id={field.name}
-                name={field.name}
-                value={newExperience[field.name]}
-                onChange={handleChange}
-                placeholder={field.placeholder}
-                className="mt-1 w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-[#ffc85e] focus:border-[#ffc85e]"
-              />
+              
+              <div className="relative w-full">
+              <div className="flex justify-end">
+          <button 
+            onClick={gemini}
+            disabled={ailoading}
+            className="mb-1 px-[0.6rem] py-[0.3rem] flex active:scale-90 text-white text-[0.65rem] font-medium rounded-md shadow-md transition duration-200 bg-gradient-to-r from-[#7F56D9C0] to-[#4F46E5C0] hover:from-[#7F56D9F0] hover:to-[#4F46E5F0]"
+          >
+           {ailoading ? (
+        <Loader2 size={14} className="animate-spin mt-[0.2rem] mr-2" /> // Spinner when loading
+      ) : (
+        <>
+          <Sparkles size={12} className="mt-[0.2rem] mr-2" />
+        </>
+      )}
+      Improve with AI
+          </button>
+        </div>
+  <textarea
+    id={field.name}
+    name={field.name}
+    value={newExperience[field.name]}
+    onChange={handleChange}
+    placeholder={field.placeholder}
+    className="w-full px-3 py-2 border min-h-28 border-gray-300 rounded-md focus:ring-[#ffc85e] focus:border-[#ffc85e]"
+  />
+</div>
+
+
             ) : (
               <input
                 id={field.name}

@@ -1,6 +1,26 @@
 import React, { useState, useEffect } from "react";
-
+import { Sparkles,Loader2 } from "lucide-react"; 
+import { geminichatSession } from "../../../server/utils/gemini";
+import toast from "react-hot-toast";
 export default function Projects({ data, updateData }) {
+  const [ailoading,setailoading] = useState(false);
+  const gemini = async () =>{
+    const projectDataString =  `Project Name: ${newProject.name}, Technologies: ${newProject.techStack}, Purpose: ${newProject.description}` ;
+    const basePrompt = "Given a project name, key technologies used, and brief description, generate a concise one-line summary that highlights its core functionality, impact, and key features. If no project data is provided, return only '110011' without any other text {data}"
+    
+    const PROMPT = basePrompt.replace("{data}", projectDataString);
+    setailoading(true);
+    const result = await geminichatSession.sendMessage(PROMPT)
+    setailoading(false);
+    const res = result.response.text()
+    if (res.includes("110011")) {
+      console.log(res)
+      toast.error("Provide valid project details")
+  }
+  else{
+    setNewProject(prev => ({ ...prev, description: res }));
+  }
+  }
   const [projects, setProjects] = useState(() => {
     const savedProjects = localStorage.getItem("projects");
     return savedProjects ? JSON.parse(savedProjects) : data || [];
@@ -64,18 +84,34 @@ export default function Projects({ data, updateData }) {
         </div>
 
         
-
-        <div>
-          <label htmlFor="description" className="text-[#46464e] block mb-1">Project Description</label>
+        <div className="relative w-full">
+        <label htmlFor="description" className="text-[#46464e] block mb-1">Project Description</label>
+        <div className="flex justify-end">
+          <button 
+            onClick={gemini}
+            disabled={ailoading}
+            className="mb-1 px-[0.6rem] py-[0.3rem] flex active:scale-90 text-white text-[0.65rem] font-medium rounded-md shadow-md transition duration-200 bg-gradient-to-r from-[#7F56D9C0] to-[#4F46E5C0] hover:from-[#7F56D9F0] hover:to-[#4F46E5F0]"
+          >
+           {ailoading ? (
+        <Loader2 size={14} className="animate-spin mt-[0.2rem] mr-2" /> // Spinner when loading
+      ) : (
+        <>
+          <Sparkles size={12} className="mt-[0.2rem] mr-2" />
+        </>
+      )}
+      Improve with AI
+          </button>
+        </div>
+        
           <textarea
             id="description"
             name="description"
             value={newProject.description}
             onChange={handleChange}
             placeholder="Briefly describe your project"
-            className="w-full p-2 border rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
+            className="w-full p-2 border min-h-20 rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
           />
-        </div>
+      </div>
 
         <button 
           onClick={addProject} 

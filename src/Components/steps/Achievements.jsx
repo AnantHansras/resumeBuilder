@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from "react";
-
+import { Sparkles,Loader2 } from "lucide-react"; 
+import { geminichatSession } from "../../../server/utils/gemini";
+import toast from "react-hot-toast";
 export default function Achievements({ data, updateData }) {
   const [achievements, setAchievements] = useState(() => {
     // Retrieve stored data if available, otherwise use props data
@@ -14,7 +16,24 @@ export default function Achievements({ data, updateData }) {
     localStorage.setItem("achievements", JSON.stringify(achievements));
     updateData(achievements)
   }, [achievements]);
-
+  const [ailoading,setailoading] = useState(false);
+  const gemini = async () =>{
+    const projectDataString =  `achievement: ${newAchievement}` ;
+    const basePrompt = "Given an achievement, refine and enhance its wording to make it more precise, impactful, and professional. If no achievement is provided, return only '110011' without any other text. {data}"
+    
+    const PROMPT = basePrompt.replace("{data}", projectDataString);
+    setailoading(true);
+    const result = await geminichatSession.sendMessage(PROMPT)
+    setailoading(false);
+    const res = result.response.text()
+    if (res.includes("110011")) {
+      console.log(res)
+      toast.error("Provide valid achievement details")
+    }
+    else{
+      setNewAchievement(res);
+    }
+  }
   const addAchievement = () => {
     if (newAchievement.trim() !== "") {
       const updatedAchievements = [...achievements, newAchievement.trim()];
@@ -39,10 +58,28 @@ export default function Achievements({ data, updateData }) {
     <div className="space-y-4">
       <h2 className="text-2xl font-bold text-[#07142b] mb-4">Achievements</h2>
       <div>
-        <label htmlFor="newAchievement" className="text-[#46464e] block mb-1">
+      <div className="flex  justify-start"><label htmlFor="newAchievement" className="text-[#46464e] block mb-1">
           Add an Achievement
         </label>
+        <div className="flex justify-end ml-auto">
+          <button 
+            onClick={gemini}
+            disabled={ailoading}
+            className="mb-1 px-[0.6rem] py-[0.3rem] flex active:scale-90 text-white text-[0.65rem] font-medium rounded-md shadow-md transition duration-200 bg-gradient-to-r from-[#7F56D9C0] to-[#4F46E5C0] hover:from-[#7F56D9F0] hover:to-[#4F46E5F0]"
+          >
+           {ailoading ? (
+        <Loader2 size={14} className="animate-spin mt-[0.2rem] mr-2" /> // Spinner when loading
+      ) : (
+        <>
+          <Sparkles size={12} className="mt-[0.2rem] mr-2" />
+        </>
+      )}
+      Improve with AI
+          </button>
+        </div></div>
+        
         <div className="flex mt-1">
+        
           <input
             id="newAchievement"
             value={newAchievement}

@@ -61,7 +61,7 @@ export function getAllResume(token) {
           throw new Error(response.data.message)
         }
   
-        toast.success("Resume Fetched Succesfully")
+        
         return response
       } catch (error) {
         console.log("GETALLRESUME API ERROR............", error)
