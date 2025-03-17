@@ -2,7 +2,14 @@ import React from "react";
 import { Mail, Phone, Calendar } from "lucide-react";
 const Temp5 = ({ formData }) => {
   return (
-    <div className="font-sans bg-white" style={{ width: "794px", height: "1123px", padding: "50px" }}>
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+<div className="font-sans bg-white" style={{ width: "794px", height: "1123px", padding: "50px" }}>
       {/* Header with circular design element */}
       {formData?.personalInfo && (
         <header className="relative mb-0 pb-6 ">
@@ -267,6 +274,9 @@ const Temp5 = ({ formData }) => {
         
       </div>
     </div>
+    
+    </div>
+    
   );
 };
 

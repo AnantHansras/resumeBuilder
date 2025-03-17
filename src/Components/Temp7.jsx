@@ -10,6 +10,13 @@ import React from "react";
 import { Mail, Phone, Calendar } from "lucide-react";
 const Temp7 = ({ formData }) => {
   return (
+
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
     <div className="font-sans bg-white" style={{ width: "794px", height: "1123px", padding: "50px" }}>
       {/* Header with circular design element */}
       {formData?.personalInfo && (
@@ -275,6 +282,10 @@ const Temp7 = ({ formData }) => {
         
       </div>
     </div>
+    
+    
+    </div>
+    
   );
 };
 

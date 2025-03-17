@@ -1,7 +1,14 @@
 import { Mail, Phone, Calendar } from "lucide-react"
 const Temp9 = ({ formData }) => {
   return (
-    <div className="font-sans flex" style={{ width: "794px", height: "1123px" }}>
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+<div className="font-sans flex" style={{ width: "794px", height: "1123px" }}>
       {/* Left Sidebar */}
       <div className="w-1/3  bg-emerald-800 text-white p-6 rounded-l-lg">
         {formData?.personalInfo && (
@@ -202,6 +209,9 @@ const Temp9 = ({ formData }) => {
         )}
       </div>
     </div>
+    
+    </div>
+    
   )
 }
 

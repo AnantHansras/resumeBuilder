@@ -2,7 +2,14 @@ import React from "react";
 
 const Temp1 = ({ formData }) => {
   return (
-    <div className="p-[60px] font-sans">
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+<div className="p-[60px] font-sans">
       <div className="flex justify-between items-start mb-12 ">
         {formData?.personalInfo && (
           <>
@@ -259,6 +266,9 @@ const Temp1 = ({ formData }) => {
         </div>
       </div>
     </div>
+    
+    </div>
+    
   );
 };
 

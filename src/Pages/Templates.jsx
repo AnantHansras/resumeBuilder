@@ -55,7 +55,7 @@ const Templates = () => {
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleTemplateClick(index)}
             className={`rounded-lg relative cursor-pointer bg-gray-100 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out ${
-              hovered !== null && hovered !== index ? "blur-sm scale-[0.98]" : ""
+              hovered !== null && hovered !== index ? "blur-[6px] scale-[0.98]" : ""
             }`}
           >
             <img
@@ -64,7 +64,7 @@ const Templates = () => {
               className="object-cover absolute inset-0 w-full h-full"
             />
             <div
-              className={`absolute inset-0 bg-black/50 flex items-end py-8 px-4 transition-opacity duration-300 ${
+              className={`absolute inset-0 bg-black/20 flex items-end py-8 px-4 transition-opacity duration-300 ${
                 hovered === index ? "opacity-100" : "opacity-0"
               }`}
             >

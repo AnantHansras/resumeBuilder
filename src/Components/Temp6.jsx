@@ -2,7 +2,14 @@ import { Mail, Phone, Calendar } from "lucide-react"
 
 const Temp8 = ({ formData }) => {
   return (
-    <div className="font-sans flex flex-col" style={{ width: "794px", height: "1123px" }}>
+<div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+<div className="font-sans flex flex-col" style={{ width: "794px", height: "1123px" }}>
       {/* Full-width header with bg-gray-800 */}
       {formData?.personalInfo && (
         <div className="w-full bg-gray-800 text-white p-6 rounded-t-lg">
@@ -218,6 +225,10 @@ const Temp8 = ({ formData }) => {
         </div>
       </div>
     </div>
+    
+    </div>
+
+    
   )
 }
 

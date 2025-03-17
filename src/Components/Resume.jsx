@@ -5,7 +5,7 @@ import { useLocation, useNavigate } from "react-router-dom"
 import { FaArrowLeft, FaDownload, FaSave, FaExchangeAlt } from "react-icons/fa"
 import { addResume } from "../Services/resumeAPI"
 import { useDispatch, useSelector } from "react-redux"
-import Temp1 from "./temp1"
+import Temp1 from "./Temp1"
 import Temp2 from "./Temp2"
 import Temp3 from "./Temp3"
 import Temp4 from "./Temp4"
@@ -14,16 +14,16 @@ import Temp6 from "./Temp6"
 import Temp7 from "./Temp7"
 import Temp8 from "./Temp8"
 import Temp9 from "./Temp9"
-import { setTemplate } from "../Slices/template" // Assuming this action exists
+import { setTemplate } from "../Slices/template" 
 import t1 from '../assets/Templates/t1.png';
-import t2 from '../assets/Templates/t2.png';
-import t3 from '../assets/Templates/t3.png';
+import t2 from '../assets/Templates/t21.png';
+import t3 from '../assets/Templates/t31.png';
 import t4 from '../assets/Templates/t4.png';
 import t5 from '../assets/Templates/t5.png';
-import t6 from '../assets/Templates/t6.png';
+import t6 from '../assets/Templates/t61.png';
 import t7 from '../assets/Templates/t7.png';
-import t8 from '../assets/Templates/t8.png';
-import t9 from '../assets/Templates/t9.png';
+import t8 from '../assets/Templates/t81.png';
+import t9 from '../assets/Templates/t91.png';
 const Resume = () => {
   const template = useSelector((state) => state.template.template)
   const [showTemplateSelector, setShowTemplateSelector] = useState(false)
@@ -161,11 +161,11 @@ const Resume = () => {
                 <div
                   key={id}
                   onClick={() => handleTemplateChange(id)}
-                  className={`cursor-pointer p-1 rounded-md overflow-hidden transition-all duration-200 hover:shadow-lg ${
+                  className={`cursor-pointer p-1 rounded-md overflow-hidden  h-56 md:h-96 w-full transition-all border-2 duration-200 hover:scale-105 ${
                     template === id ? "border-purple-500 ring-2 ring-purple-300" : "border-gray-200"
                   }`}
                 >
-                  <div className="relative pb-[140%] overflow-hidden h-60 md:h-96 w-full">
+                  <div className="relative pb-[140%] overflow-hidden">
                     <img
                       src={`/template-${id}-thumbnail.jpg`}
                       alt={`Template ${id}`}
@@ -190,12 +190,6 @@ const Resume = () => {
       <div
         id="resume-content"
         ref={resumeRef}
-        className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
-        style={{
-          width: "794px",
-          height: "1123px",
-          boxSizing: "border-box",
-        }}
       >
         {renderTemplate()}
       </div>

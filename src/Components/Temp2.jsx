@@ -1,7 +1,14 @@
 import { Mail, Phone, Calendar } from "lucide-react";
 const Temp2 = ({ formData }) => {
   return (
-    <div className="font-sans" style={{ width: "794px", height: "1123px",padding:"60px" }}>
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+<div className="font-sans" style={{ width: "794px", height: "1123px",padding:"60px" }}>
       {/* Header with background */}
       <div className="bg-gray-100 p-4 rounded-lg mb-6 -mt-6">
         {formData?.personalInfo && (
@@ -181,6 +188,9 @@ const Temp2 = ({ formData }) => {
         </div>
       </div>
     </div>
+    
+    </div>
+    
   )
 }
 

@@ -1,7 +1,15 @@
 import { Mail, Phone, Calendar } from "lucide-react"
 const Temp8 = ({ formData }) => {
   return (
-    <div className="font-sans flex" style={{ width: "794px", height: "1123px" }}>
+    <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
+    style={{
+      width: "794px",
+      height: "1123px",
+      boxSizing: "border-box",
+    }}>
+
+    
+<div className="font-sans flex" style={{ width: "794px", height: "1123px" }}>
       {/* Right Content (now on left) */}
       <div className="w-2/3 bg-white p-6 rounded-l-lg">
         {/* Experience */}
@@ -202,6 +210,8 @@ const Temp8 = ({ formData }) => {
         {/* Others */}
       </div>
     </div>
+    </div>
+    
   )
 }
 
