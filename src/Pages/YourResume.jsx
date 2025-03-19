@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllResume } from "../Services/resumeAPI";
+import { useDispatch } from "react-redux";
+import { deleteResume, getAllResume } from "../Services/resumeAPI";
 import { toast } from "react-hot-toast";
-
+import { Pencil, Eye, Trash } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { setTemplate } from "../Slices/template";
 export default function YourResume() {
+  const navigate = useNavigate();
+  const [refresh,setRefresh] = useState(true);
   const dispatch = useDispatch();
   const [resumes, setResumes] = useState([]);
+
+  const [editTitle, setEditTitle] = useState("");
+  const [editingId, setEditingId] = useState(null);
+
   const storedToken = localStorage.getItem("token");
   const token = storedToken ? JSON.parse(storedToken) : null;
-  
 
   useEffect(() => {
     if (token) {
@@ -16,33 +23,84 @@ export default function YourResume() {
         .then((res) => {
           if (res && res.data && res.data.resumes) {
             setResumes(res.data.resumes);
-            
           }
         })
-        .catch((error) => {
+        .catch(() => {
           toast.error("Failed to fetch resumes");
         });
     }
-  }, [dispatch, token]);
+    console.log("YourResume",resumes)
+  }, [dispatch, token,refresh]);
+  useEffect(() => {
+    
+  }, []);
+  const handleRename = (id) => {
+    // Logic to rename resume
+    setEditingId(null);
+  };
 
+  const handleDelete = (id) => {
+    // Logic to delete resume
+    dispatch(deleteResume(id,token))
+    setRefresh(!refresh)
+  };
+  const view = (resume)=>{
+    dispatch(setTemplate(resume.template))
+    navigate("/resume", { state: { formData: resume.resumeData } })
+  }
   return (
-    <div style={{ padding: "20px" }}>
-      <h1 style={{ fontSize: "24px", fontWeight: "bold", marginBottom: "16px" }}>Your Resumes</h1>
-      { 
-        resumes.length > 0 ? (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(250px, 1fr))", gap: "16px" }}>
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Your Resumes</h1>
+      {resumes.length > 0 ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {resumes.map((resume) => (
-            <div key={resume.id} style={{ padding: "16px", border: "1px solid #ccc", borderRadius: "8px", boxShadow: "2px 2px 6px rgba(0, 0, 0, 0.1)" }}>
-              <h2 style={{ fontSize: "18px", fontWeight: "600" }}>{resume.title || "Untitled Resume"}</h2>
-              <p style={{ fontSize: "14px", color: "#666" }}>Last Updated: {resume.updatedAt}</p>
-              <button style={{ marginTop: "8px", width: "100%", padding: "10px", backgroundColor: "#007BFF", color: "white", border: "none", borderRadius: "4px", cursor: "pointer" }}>
-                View Resume
-              </button>
+            <div key={resume._id} className="p-4 bg-white border rounded-lg shadow-md">
+              {editingId === resume._id ? (
+                <div className="flex items-center gap-2">
+                  <input
+                    type="text"
+                    value={editTitle}
+                    onChange={(e) => setEditTitle(e.target.value)}
+                    className="w-full p-2 border rounded-md"
+                  />
+                  <button
+                    onClick={() => handleRename(resume._id)}
+                    className="p-2 bg-green-500 text-white rounded-md"
+                  >
+                    Save
+                  </button>
+                </div>
+              ) : (
+                <h2 className="text-lg font-semibold">{resume.name || "Untitled Resume"}</h2>
+              )}
+              <p className="text-sm text-gray-500">Last Updated: {new Date(resume.updatedAt).toLocaleString()}</p>
+              
+              <div className="flex justify-between mt-4">
+                <button
+                  onClick={() => setEditingId(resume._id)}
+                  className="flex items-center gap-1 text-blue-600 hover:underline"
+                >
+                  <Pencil size={16} /> Rename
+                </button>
+                <button
+                  className="flex items-center gap-1 text-green-600 hover:underline"
+                  onClick={() => view(resume)}
+
+                >
+                  <Eye size={16} /> View
+                </button>
+                <button
+                  onClick={() => handleDelete(resume._id)}
+                  className="flex items-center gap-1 text-red-600 hover:underline"
+                >
+                  <Trash size={16} /> Delete
+                </button>
+              </div>
             </div>
           ))}
         </div>
       ) : (
-        <p>No resumes found.</p>
+        <p className="text-gray-600">No resumes found.</p>
       )}
     </div>
   );

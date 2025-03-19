@@ -9,12 +9,12 @@ const {
     GETALLRESUME_API
 } = resuemEndpoints
 
-export function addResume(resume, token) {
+export function addResume(template,filename,resume, token) {
   return async (dispatch) => {
      dispatch(setLoading(true))
     try {
-
-      const response = await apiConnector("POST", ADDRESUME_API, {resume},{Authorization: `Bearer ${token}`,})
+        
+      const response = await apiConnector("POST", ADDRESUME_API, {template,filename,resume},{Authorization: `Bearer ${token}`,})
       console.log("ADDRESUME API RESPONSE............", response)
 
       if (!response.data.success) {

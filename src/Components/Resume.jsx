@@ -1,6 +1,6 @@
 "use client"
-
-import { useRef, useState } from "react"
+import { X } from "lucide-react";
+import { useEffect, useRef, useState } from "react"
 import { useLocation, useNavigate } from "react-router-dom"
 import { FaArrowLeft, FaDownload, FaSave, FaExchangeAlt } from "react-icons/fa"
 import { addResume } from "../Services/resumeAPI"
@@ -15,6 +15,7 @@ import Temp7 from "./Temp7"
 import Temp8 from "./Temp8"
 import Temp9 from "./Temp9"
 import { setTemplate } from "../Slices/template" 
+import { setName } from "../Slices/fileName";
 import t1 from '../assets/Templates/t1.png';
 import t2 from '../assets/Templates/t21.png';
 import t3 from '../assets/Templates/t31.png';
@@ -25,9 +26,13 @@ import t7 from '../assets/Templates/t7.png';
 import t8 from '../assets/Templates/t81.png';
 import t9 from '../assets/Templates/t91.png';
 const Resume = () => {
+  const [fileName, setFileName] = useState("Resume");
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const template = useSelector((state) => state.template.template)
+  
   const [showTemplateSelector, setShowTemplateSelector] = useState(false)
   const tempimg = [t1, t2, t3, t4, t5, t6, t7, t8, t9];
+
   const renderTemplate = () => {
     switch (template) {
       case 1:
@@ -55,7 +60,8 @@ const Resume = () => {
 
   const location = useLocation()
   const navigate = useNavigate()
-  const formData = location.state?.formData || {}
+  const { formData} = location.state || {}
+
   const dispatch = useDispatch()
   const resumeRef = useRef(null)
 
@@ -66,9 +72,11 @@ const Resume = () => {
     navigate("/create-resume", { state: { formData } })
   }
 
-  const handleSave = () => {
-    dispatch(addResume(formData, token))
+  const handleSave = (fileName1) => {
+    setIsModalOpen(false);
+    dispatch(addResume(template,fileName1,formData, token))
   }
+  const resumeName = useSelector((state) => state.name.name)
 
   const handleDownload = () => {
     const resumeContent = resumeRef.current
@@ -131,7 +139,7 @@ const Resume = () => {
         </button>
 
         <button
-          onClick={handleSave}
+          onClick={() => {setIsModalOpen(true)}}
           className="px-4 py-2 bg-green-500 text-white rounded-md shadow-md hover:bg-green-600 flex items-center gap-2"
         >
           <FaSave /> Save
@@ -186,6 +194,34 @@ const Resume = () => {
         </div>
       )}
 
+      { isModalOpen && 
+        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-30">
+      <div className="bg-white shadow-lg rounded-lg p-6 w-96">
+        <div className="flex justify-between items-center mb-4">
+          <h2 className="text-lg font-semibold text-[#07142b]">Save Resume</h2>
+          <button onClick={() => {setIsModalOpen(false)}} className="text-gray-500 hover:text-gray-700">
+            <X size={20} />
+          </button>
+        </div>
+
+        <input
+          type="text"
+          value={fileName}
+          onChange={(e) => setFileName(e.target.value)}
+          className="w-full p-2 border border-gray-300 rounded-md bg-[#f9faff] text-[#46464e]"
+          placeholder="Enter file name"
+        />
+
+        <button
+          onClick={() => handleSave(fileName)}
+          className="w-full mt-4 py-2 rounded-md text-[#07142b] bg-[#ffc85e] hover:bg-[#ffd78e] font-semibold"
+        >
+          Save
+        </button>
+      </div>
+        </div>
+      }
+
       {/* Resume Content */}
       <div
         id="resume-content"
@@ -193,6 +229,7 @@ const Resume = () => {
       >
         {renderTemplate()}
       </div>
+
     </div>
   )
 }

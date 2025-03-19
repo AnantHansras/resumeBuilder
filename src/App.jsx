@@ -18,12 +18,13 @@ import {Toaster} from 'react-hot-toast'
 import Templates from './Pages/Templates'
 import Resume from './Components/Resume'
 import YourResume from './Pages/YourResume'
+
+
 function App() {
-  
   return (
     <div>
     <Toaster position="top-center" reverseOrder={false} />
-    <Navbar/>
+      <Navbar/>
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<Signup/>}/>
@@ -49,5 +50,6 @@ function App() {
     </div>
   )
 }
+
 
 export default App

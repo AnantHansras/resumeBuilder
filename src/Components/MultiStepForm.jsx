@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { useSelector } from "react-redux";
 import PersonalInfo from "./steps/PersonalInfo";
 import Education from "./steps/Education";
 import Skills from "./steps/Skills";
@@ -12,6 +13,16 @@ import ProgressIndicator from "./ProgressIndicator";
 const steps = ["Personal Info", "Education", "Skills", "Achievements", "Projects", "Experience", "Others"];
 
 export default function MultiStepForm() {
+
+  const resumeName = useSelector((state) => state.name.name)
+  
+  useEffect(() => {
+    setFormData((prev) => ({
+        ...prev,
+        name: resumeName
+    }));
+}, [resumeName]);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -102,20 +113,19 @@ export default function MultiStepForm() {
         {currentStep >= 3 && (
           <button 
             className="flex justify-center items-center border border-gray-300 rounded-xl p-3 bg-[#ffc85e] text-[#07142b] hover:bg-[#ffd78e] active:scale-95"
-            onClick={() => navigate("/resume", { state: { formData } })} 
+            onClick={() => navigate("/resume", { state: { formData} })} 
             style={{ cursor: "pointer"}}
           >
             Preview
           </button>
         )}
         <button 
-  onClick={handleNext} 
-  className="px-6 py-3 bg-[#07142b] text-white hover:text-[#07142b] border border-[#07142b] rounded-md cursor-pointer transition 
-             hover:bg-transparent hover:shadow-lg active:scale-95"
->
-  {currentStep === steps.length - 1 ? "Submit" : "Next"}
-</button>
-
+          onClick={handleNext} 
+          className="px-6 py-3 bg-[#07142b] text-white hover:text-[#07142b] border border-[#07142b] rounded-md cursor-pointer transition 
+                    hover:bg-transparent hover:shadow-lg active:scale-95"
+        >
+          {currentStep === steps.length - 1 ? "Submit" : "Next"}
+        </button>
       </div>
     </div>
   );

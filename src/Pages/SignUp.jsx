@@ -12,17 +12,10 @@ export default function Signup() {
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault()
-        
-    
-        
         //dispatch(setSignupdata(signupData))
-        
         await dispatch(sendOtp(email, navigate,{
           name,email,password
-        }))
-        
-        
-        
+        })) 
   };
 
   return (

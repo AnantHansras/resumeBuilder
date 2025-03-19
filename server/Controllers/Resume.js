@@ -3,13 +3,13 @@ const Resume = require("../Models/Resume");
 const addResume = async (req, res) => {
     try {
         const userId = req.user.id;
-        const { resume } = req.body;
+        const { template,resume,filename } = req.body;
 
         if (!resume) {
             return res.status(400).json({ success: false, message: "Resume data is required" });
         }
 
-        const newResume = new Resume({ userId, resumeData: resume });
+        const newResume = new Resume({ userId, resumeData: resume,name:filename,template:template });
         await newResume.save();
 
         res.status(200).json({ success: true, message: "Resume added successfully", resume: newResume });
