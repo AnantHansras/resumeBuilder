@@ -10,7 +10,7 @@ const {
   LOGIN_API
 } = userEndpoints
 
-export function sendOtp(email, navigate,signupData) {
+export function sendOtp(email, navigate,signupData){
   return async (dispatch) => {
      dispatch(setLoading(true))
     try {
@@ -30,8 +30,8 @@ export function sendOtp(email, navigate,signupData) {
 
       toast.success("OTP Sent Successfully")
     } catch (error) {
-      console.log("SENDOTP API ERROR............", error)
-      toast.error("Could Not Send OTP")
+      console.log("SENDOTP API ERROR............", error.response.data.message)
+      toast.error(error.response.data.message)
     }
     dispatch(setLoading(false))
   }
@@ -55,10 +55,12 @@ export function signUp(name,email,password,otp,navigate) {
         throw new Error(response.data.message)
       }
     toast.success("Signup Successful",{theme: "dark"})
-      navigate("/login")
+    localStorage.setItem("token", JSON.stringify(response.data.token))
+      localStorage.setItem("user", JSON.stringify(response.data.user))
+      navigate("/")
     } catch (error) {
-      console.log("SIGNUP API ERROR............", error)
-       toast.error("Signup Failed",{theme: "dark"})
+      console.log("SIGNUP API ERROR............", error.response.data.message)
+       toast.error(error.response.data.message,{theme: "dark"})
       navigate("/signup")
     }
      dispatch(setLoading(false))
@@ -89,7 +91,7 @@ export function login(email, password, navigate) {
 
     } catch (error) {
       console.log("LOGIN API ERROR............", error)
-       toast.error("Login Failed",{theme: "dark"})
+       toast.error(error.response.data.message,{theme: "dark"})
     }
      dispatch(setLoading(false))
   }

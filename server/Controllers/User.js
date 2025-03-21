@@ -70,7 +70,7 @@ const sendotpController = async (req,res) => {
         if(userPresent){
             return res.status(401).json({
                 success:false,
-                message:"User already exist so not able to signIn"
+                message:"User already exist"
             });
         }
         let otp = otpGenerator.generate(6,{

@@ -6,7 +6,6 @@ import { Pencil, Eye, Trash } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { setTemplate } from "../Slices/template";
 export default function YourResume() {
-  const navigate = useNavigate();
   const [refresh,setRefresh] = useState(true);
   const dispatch = useDispatch();
   const [resumes, setResumes] = useState([]);
@@ -16,7 +15,13 @@ export default function YourResume() {
 
   const storedToken = localStorage.getItem("token");
   const token = storedToken ? JSON.parse(storedToken) : null;
-
+  const navigate = useNavigate();
+  useEffect(() => {
+      if (!token) {
+        toast.error("Please log in first.");
+        navigate("/");
+      }
+  }, [navigate]);
   useEffect(() => {
     if (token) {
       dispatch(getAllResume(token))

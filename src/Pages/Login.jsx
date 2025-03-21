@@ -2,8 +2,9 @@ import { useState } from "react";
 import { Link ,useNavigate} from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { login } from '../Services/userAPI';
-
+import {Loader2} from "lucide-react"
 export default function Login() {
+  const [isLoading, setIsLoading] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
@@ -13,7 +14,11 @@ export default function Login() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     dispatch(login(email, password, navigate));
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
 };
 
   return (
@@ -53,8 +58,8 @@ export default function Login() {
             />
           </div>
           <button type="submit" className="w-full bg-[#ffc85e] hover:bg-[#ffd78e] text-[#07142b] py-2 rounded-lg font-bold">
-            Log in
-          </button>
+          {!isLoading ? <span>Log In</span> :  <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin" />Loading...</span>}
+        </button>
         </form>
         <div className="flex flex-col space-y-2 mt-4 text-center">
           <Link to="/forgot-password" className="text-sm text-[#0c1986] hover:underline">
@@ -68,7 +73,6 @@ export default function Login() {
           </div>
         </div>
       </div>
-      
     </div>
   );
 }

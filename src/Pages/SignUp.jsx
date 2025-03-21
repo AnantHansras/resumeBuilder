@@ -4,18 +4,22 @@ import { useNavigate } from 'react-router-dom';
 //import { setSignupdata } from '../slices/SignupDataSlice';
 import { sendOtp } from '../Services/userAPI';
 import { useDispatch } from "react-redux";
+import {Loader2} from "lucide-react"
 export default function Signup() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const handleSubmit = async (e) => {
     e.preventDefault()
         //dispatch(setSignupdata(signupData))
+        setIsLoading(true);
         await dispatch(sendOtp(email, navigate,{
           name,email,password
         })) 
+        setIsLoading(false);
   };
 
   return (
@@ -69,7 +73,7 @@ export default function Signup() {
           />
         </div>
         <button type="submit" className="w-full bg-[#ffc85e] hover:bg-[#ffd78e] text-[#07142b] py-2 rounded-lg font-bold">
-          Sign up
+          {!isLoading ? <span>Sign Up</span> :  <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin" />Loading...</span>}
         </button>
       </form>
       <div className="flex flex-col space-y-2 mt-4 text-center">

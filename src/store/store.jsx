@@ -1,5 +1,4 @@
 import { configureStore } from "@reduxjs/toolkit";
-
 import loadingReducer from '../Slices/loading';
 import templateReducer from '../Slices/template'
 import fileNameReducer from '../Slices/fileName'
