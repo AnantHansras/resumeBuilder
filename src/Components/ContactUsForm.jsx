@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect ,useState} from "react";
 import { useForm } from "react-hook-form";
 import CountryCode from "../data/countrycode.json";
-
+import { apiConnector } from "../Services/apiConnector"
+import { contactusEndpoint } from "../Services/apis"
+import toast from "react-hot-toast";
+import {Loader2} from "lucide-react"
 const ContactUsForm = () => {
   const {
     register,
@@ -9,24 +12,38 @@ const ContactUsForm = () => {
     reset,
     formState: { errors, isSubmitSuccessful },
   } = useForm();
-
-  const submitContactForm = (data) => {
-    console.log("Form Data:", data);
-    alert("Form submitted successfully!");
-  };
-
-  useEffect(() => {
-    if (isSubmitSuccessful) {
-      reset({
-        email: "",
-        firstname: "",
-        lastname: "",
-        message: "",
-        phoneNo: "",
-      });
+  const [isLoading, setIsLoading] = useState(false);
+    const submitContactForm = async (data) => {
+      console.log("Form Data - ", data)
+      setIsLoading(true)
+      try {
+        
+        const res = await apiConnector(
+          "POST",
+          contactusEndpoint.CONTACT_US_API,
+          data
+        )
+        console.log("Email Res - ", res)
+          setIsLoading(false);
+          toast.success("Form Submitted Succesfully")
+      } catch (error) {
+        console.log("ERROR MESSAGE - ", error.message)
+        toast.success("Server is Down!!")
+        setIsLoading(false);
+      }
     }
-  }, [reset, isSubmitSuccessful]);
-
+  
+    useEffect(() => {
+      if (isSubmitSuccessful) {
+        reset({
+          email: "",
+          firstname: "",
+          lastname: "",
+          message: "",
+          phoneNo: "",
+        })
+      }
+    }, [reset, isSubmitSuccessful])
   return (
     <form className="flex flex-col gap-7" onSubmit={handleSubmit(submitContactForm)}>
       <div className="flex flex-col gap-5 lg:flex-row">
@@ -133,7 +150,7 @@ const ContactUsForm = () => {
         className={`rounded-md bg-[#ffc85e] px-6 py-3 text-center text-[13px] font-bold text-[#07142b] shadow-md transition-all duration-200 
         hover:scale-95 hover:shadow-none sm:text-[16px]`}
       >
-        Send Message
+        {!isLoading ? <span>Send Message</span> :  <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin" />Loading...</span>}
       </button>
     </form>
   );

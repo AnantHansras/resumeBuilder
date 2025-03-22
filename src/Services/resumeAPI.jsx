@@ -6,7 +6,8 @@ import { resuemEndpoints } from './apis'
 const {
     ADDRESUME_API,
     DELETERESUME_API,
-    GETALLRESUME_API
+    GETALLRESUME_API,
+    CHANGENAME_API
 } = resuemEndpoints
 
 export function addResume(template,filename,resume, token) {
@@ -30,6 +31,23 @@ export function addResume(template,filename,resume, token) {
   }
 }
 
+export function changeResumeName(newName,resumeId,token) {
+  return async (dispatch) => {
+     dispatch(setLoading(true))
+    try {
+      const response = await apiConnector("POST", CHANGENAME_API, {newName,resumeId},{Authorization: `Bearer ${token}`,})
+      console.log("CHANGENAME API RESPONSE............", response)
+      if (!response.data.success) {
+        throw new Error(response.data.message)
+      }
+      toast.success("Name Saved Succesfully")
+    } catch (error) {
+      console.log("CHANGENAME API ERROR............", error)
+      toast.error("Could Not Change Name")
+    }
+    dispatch(setLoading(false))
+  }
+}
 export function deleteResume(resumeId,token) {
     return async (dispatch) => {
        dispatch(setLoading(true))

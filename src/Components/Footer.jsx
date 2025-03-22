@@ -23,9 +23,10 @@ const Footer = () => {
             <p className="text-[#94A3B8] text-sm leading-relaxed">
               We share knowledge, tips, and tools to help everyone find their dream job.
             </p>
-            <button href='create-resume' className="bg-[#FCD34D] hover:bg-[#fbbf24] text-black text-xs rounded-full px-3 py-2 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(252,211,77,0.3)] active:scale-95">
+            <button><a href='/create-resume' className="bg-[#FCD34D] hover:bg-[#fbbf24] text-black text-xs rounded-full px-3 py-2 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_15px_rgba(252,211,77,0.3)] active:scale-95">
               Create My Resume
-            </button>
+            </a></button>
+            
             <div className="flex gap-6  items-center">
               {[{ icon: Twitter, href: "#" }, { icon: Facebook, href: "#" }, { icon: Linkedin, href: "#" }].map(
                 (social, index) => (
@@ -35,7 +36,7 @@ const Footer = () => {
                     className="text-white/80 hover:text-[#FCD34D] transition-all duration-300 transform hover:scale-110"
                     aria-label={`Follow us on ${social.icon.name}`}
                   >
-                    <social.icon size={22} />
+                    <social.icon size={22}/>
                   </a>
                 )
               )}
@@ -84,7 +85,7 @@ const Footer = () => {
                   {column.links.map((link, i) => (
                     <li key={i}>
                       <a
-                        href="#"
+                        href="/create-resume"
                         className={`inline-block text-white
                          hover:text-[#60A5FA] transition-all duration-300 transform hover:translate-x-1`}
                       >

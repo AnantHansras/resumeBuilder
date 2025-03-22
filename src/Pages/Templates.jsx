@@ -33,7 +33,7 @@ const Templates = () => {
     navigate('/create-resume')
   };
   return (
-    <div className="bg-[#f9faff] h-full -my-8 py-8">
+    <div className="bg-[#f9faff] h-full  py-16">
     <div className="max-w-5xl mx-auto md:px-8 w-full my-8 ">
       {/* Heading and Description */}
       <div className="text-center mb-6">

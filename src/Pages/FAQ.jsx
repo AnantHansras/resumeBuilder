@@ -76,7 +76,7 @@ export default function FAQ() {
       initial={{ opacity: 0 }} 
       animate={{ opacity: 1 }} 
       transition={{ duration: 0.8 }}
-      className="min-h-screen bg-white py-12 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
+      className="min-h-screen bg-white py-20 px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto"
     >
       <motion.div 
         initial={{ y: -20, opacity: 0 }}

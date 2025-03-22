@@ -22,7 +22,7 @@ export default function Login() {
 };
 
   return (
-    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
       <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
         <div className="text-center mb-6">
           <h2 className="text-2xl font-bold text-[#46464e]">Log in to Resumify</h2>

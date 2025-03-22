@@ -2,19 +2,21 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { tokenPassword } from "../Services/passwordAPI";
-
+import { Loader2 } from "lucide-react";
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const dispatch = useDispatch();
   const [emailSent, setEmailSent] = useState(false);
-
+  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
+    setIsLoading(true)
     dispatch(tokenPassword(email, setEmailSent));
+    setIsLoading(false);
   };
-
+  
   return (
-    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
+    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
       <div className="w-full max-w-md bg-white p-6 shadow-md rounded-md">
         <div className="text-center">
           <h2 className="text-2xl font-bold text-[#46464e]">Forgot Password</h2>
@@ -45,7 +47,8 @@ export default function ForgotPassword() {
             type="submit"
             className="w-full bg-[#ffc85e] hover:bg-[#ffd78e] text-[#07142b] py-2 rounded-md font-semibold"
           >
-            {emailSent ? "Resend Email" : "Reset Password"}
+          {!isLoading ? <span>{emailSent ? "Resend Email" : "Reset Password"}</span> :  <span className="flex items-center justify-center gap-2"><Loader2 className="animate-spin" />Loading...</span>}
+            
           </button>
         </form>
         <div className="text-sm text-[#07142b] text-center mt-4">

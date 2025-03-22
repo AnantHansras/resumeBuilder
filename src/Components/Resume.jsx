@@ -73,22 +73,22 @@ const Resume = () => {
   }
 
   const handleSave = (fileName1) => {
+    
     setIsModalOpen(false);
     dispatch(addResume(template,fileName1,formData, token))
   }
   const resumeName = useSelector((state) => state.name.name)
 
   const handleDownload = () => {
+    localStorage.setItem('disablePrintMargins', 'true');
     const resumeContent = resumeRef.current
     const originalDisplay = document.body.innerHTML
-
     // Hide everything except the resume
     document.body.innerHTML = resumeContent.innerHTML
     window.print()
-
     // Restore original content after printing
     document.body.innerHTML = originalDisplay
-    window.location.reload() // Reload to restore event listeners
+    window.location.reload() 
   }
 
   const handleTemplateChange = (templateId) => {
@@ -101,7 +101,7 @@ const Resume = () => {
   }
 
   return (
-    <div className="bg-[#f9faff] font-sans pb-10">
+    <div className="bg-[#f9faff] font-sans pb-10 pt-20 ">
       {/* Print-specific styles */}
       <style>
         {`
@@ -195,7 +195,7 @@ const Resume = () => {
       )}
 
       { isModalOpen && 
-        <div className="fixed inset-0 z-100 flex items-center justify-center bg-black bg-opacity-30">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-30">
       <div className="bg-white shadow-lg rounded-lg p-6 w-96">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-lg font-semibold text-[#07142b]">Save Resume</h2>
@@ -224,13 +224,47 @@ const Resume = () => {
 
       {/* Resume Content */}
       <div
-        id="resume-content"
+        id="resume-content "
         ref={resumeRef}
       >
         {renderTemplate()}
       </div>
+      <style>
+  {`
+    @media print {
+  @page {
+    size: A4; /* Ensures it prints on A4 */
+    margin: 0; /* Removes all default margins */
+  }
 
+  * {
+    margin: 0 !important;
+    padding: 0 !important;
+    box-shadow: none !important;
+  }
+
+  html, body {
+    margin: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    overflow: hidden !important;
+  }
+
+  #resume-content {
+    width: 100vw !important;
+    height: 100vh !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    transform: scale(1) !important; /* Ensures no shrinking */
+  }
+}
+
+  `}
+</style>
     </div>
+    
   )
 }
 

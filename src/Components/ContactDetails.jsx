@@ -27,7 +27,7 @@ const contactDetails = [
 
 const ContactDetails = () => {
   return (
-    <div className="relative flex flex-col gap-6 p-1">
+    <div className="relative flex flex-col gap-6 p-1 ">
       {/* Border Animation */}
       <div className="absolute inset-0 rounded-xl border-2 border-transparent bg-gradient-to-r from-blue-500 via-green-500 to-pink-500 animate-borderMove"></div>
 

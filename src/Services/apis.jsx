@@ -15,5 +15,9 @@ export const resuemEndpoints = {
     ADDRESUME_API : BASE_URL + '/resume/addresume',
     DELETERESUME_API : BASE_URL + '/resume/deleteresume',
     GETALLRESUME_API : BASE_URL + '/resume/getallresume',
+    CHANGENAME_API : BASE_URL + '/resume/changeresumename',
 }
 
+export const contactusEndpoint = {
+    CONTACT_US_API: BASE_URL + "/reach/contact",
+  }

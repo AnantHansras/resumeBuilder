@@ -62,7 +62,7 @@ const resumeExamples = [
 
 export default function ResumeExamples() {
   return (
-    <div className="min-h-screen bg-[#f9faff] py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f9faff] py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-4xl font-bold text-center text-[#07142b] mb-12">
         Industry-Specific <span className="text-[#ffc85c]">Resume</span> Examples

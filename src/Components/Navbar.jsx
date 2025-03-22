@@ -89,9 +89,10 @@ const navItems = [
 
 const Navbar = () => {
   
-  const token = localStorage.getItem("token")
-    ? JSON.parse(localStorage.getItem("token"))
-    : null;
+  const storedToken = localStorage.getItem("token");
+
+const token = storedToken ? JSON.parse(storedToken) : null;
+  
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   
@@ -103,7 +104,7 @@ const Navbar = () => {
   }
   const navigate = useNavigate()
   return (
-    <nav className="bg-[#f9faff] text-[#07142b] shadow-sm relative z-50">
+    <nav className="bg-[#f9faff] w-full text-[#07142b] border-[#07142b30]  shadow-md border-b-2 fixed z-50">
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}

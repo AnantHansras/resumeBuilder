@@ -55,9 +55,7 @@ export function signUp(name,email,password,otp,navigate) {
         throw new Error(response.data.message)
       }
     toast.success("Signup Successful",{theme: "dark"})
-    localStorage.setItem("token", JSON.stringify(response.data.token))
-      localStorage.setItem("user", JSON.stringify(response.data.user))
-      navigate("/")
+      navigate("/login")
     } catch (error) {
       console.log("SIGNUP API ERROR............", error.response.data.message)
        toast.error(error.response.data.message,{theme: "dark"})

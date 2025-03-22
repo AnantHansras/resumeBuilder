@@ -28,7 +28,7 @@ export default function Tut1() {
 
   return (
     <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 1 }} className="min-h-screen bg-[#f9faff]">
-      <div className="container mx-auto px-4 py-8">
+      <div className="container mx-auto px-4 py-20 ">
         <motion.div className="text-center mb-12" initial={{ y: 0, opacity: 1 }} animate={{ y: 0, opacity: 1 }} transition={{ duration: 0.5, type: "spring" }}>
         <h1 className="text-3xl font-bold text-[#07142b] mb-4">Craft a Powerful <span className="text-[#ffc85c]">Resume</span> with Impactful Content</h1> <p className="text-[#46464e] max-w-2xl mx-auto">Learn how to write compelling resume content that highlights your skills, experience, and achievements effectively. Explore our expert-led tutorials to create a resume that gets noticed.</p>
         </motion.div>

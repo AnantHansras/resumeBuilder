@@ -14,7 +14,7 @@ const CreateResume = () => {
     }
   }, [token]);
   return (
-    <div className='min-h-screen bg-[#f9faff] flex items-center justify-center p-4'>
+    <div className='min-h-screen bg-[#f9faff] flex items-center justify-center p-4 py-20'>
         <MultiStepForm/>
     </div>
   )

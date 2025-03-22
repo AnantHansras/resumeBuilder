@@ -31,7 +31,7 @@ export default function OTP() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f9faff] p-4">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f9faff] p-4 py-20">
       <div className="w-full max-w-md space-y-8 rounded-lg bg-white p-6 shadow-md">
         <div className="text-center">
           <h1 className="text-2xl font-bold tracking-tight text-[#07142b]">
