@@ -18,6 +18,7 @@ import {Toaster} from 'react-hot-toast'
 import Templates from './Pages/Templates'
 import Resume from './Components/Resume'
 import YourResume from './Pages/YourResume'
+import ATS from './Pages/ATS'
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
         <Route path='/example-resume' element={<ResumeExamples/>}/>
         <Route path='/resume' element={<Resume/>}/>
         <Route path='/your-resume' element={<YourResume/>}/>
+        <Route path='/ATS' element={<ATS/>}/>
       </Routes>
     </div>
   )
