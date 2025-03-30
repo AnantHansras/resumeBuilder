@@ -1,8 +1,9 @@
 import './App.css'
+import { useEffect } from "react";
 import Login from './Pages/Login'
 import Signup from './Pages/SignUp'
 import ForgotPassword from './Pages/ForgotPassword'
-import {Routes,Route} from 'react-router-dom'
+import {Routes,Route, useNavigate} from 'react-router-dom'
 import Navbar from './Components/Navbar'
 import CreateResume from './Pages/CreateResume'
 import Home from './Pages/Home'
@@ -22,6 +23,43 @@ import ATS from './Pages/ATS'
 
 
 function App() {
+  const navigate = useNavigate();
+  function isTokenExpired(token) {
+    if (!token) return true; // If there's no token, consider it expired
+  
+    try {
+      const base64Url = token.split(".")[1]; // Extract payload part
+      if (!base64Url) return true; // If the token is malformed
+  
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/"); // Fix JWT encoding
+      const payload = JSON.parse(atob(base64)); // Decode payload
+  
+      console.log("Decoded Token Payload:", payload); // Debugging
+  
+      if (!payload.exp) return true; // If exp field is missing, consider it expired
+  
+      const expiryTime = payload.exp * 1000; // Convert exp to milliseconds
+      const currentTime = Date.now(); // Get current time in milliseconds
+  
+      console.log(`Expiry Time: ${new Date(expiryTime)} | Current Time: ${new Date(currentTime)}`);
+  
+      return currentTime >= expiryTime; // Check if expired
+    } catch (error) {
+      console.error("Error decoding token:", error);
+      return true; // If there's an error, consider token expired
+    }
+  }
+
+  useEffect(() => {
+    
+    const token = localStorage.getItem("token");
+    console.log(isTokenExpired(token))
+    if (!token || isTokenExpired(token)) {
+      localStorage.removeItem("token");
+      navigate("/login"); // Redirect to login on token expiry
+    }
+  }, []);
+  
   return (
     <div>
     <Toaster position="top-center" reverseOrder={false} />
