@@ -69,13 +69,24 @@ const Resume = () => {
   const token = storedToken ? JSON.parse(storedToken) : null
 
   const handleBack = () => {
-    navigate("/create-resume", { state: { formData } })
+    navigate("/create-resume")
   }
 
-  const handleSave = (fileName1) => {
+  const handleSave = async (fileName1) => {
     
+    console.log("working")
     setIsModalOpen(false);
-    dispatch(addResume(template,fileName1,formData, token))
+    await dispatch(addResume(template,fileName1,formData, token))
+    const keysToRemove = [
+      'achievements', 'education', 'experiences', 'projects', 
+      'personalInfo', 'skills', 'resources', 'formData','currentStep'
+  ];
+  if (Array.isArray(keysToRemove)) {
+    keysToRemove.forEach((key) => {
+        localStorage.removeItem(key);
+    });
+    navigate("/your-resume")
+}
   }
   const resumeName = useSelector((state) => state.name.name)
 

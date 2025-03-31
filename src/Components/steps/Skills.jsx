@@ -4,7 +4,10 @@ export default function Skills({ data, updateData }) {
   const [skills, setSkills] = useState(() => {
     // Retrieve stored data if available, otherwise use props data
     const savedSkills = localStorage.getItem("skills");
+    console.log(savedSkills)
+    
     return savedSkills ? JSON.parse(savedSkills) : data || [];
+    
   });
 
   const [newSkill, setNewSkill] = useState("");

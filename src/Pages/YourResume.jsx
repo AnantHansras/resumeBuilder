@@ -240,9 +240,26 @@ export default function YourResume() {
   };
 
   const view = async (resume) => {
-    await dispatch(setTemplate(resume.template));
+    // Ensure localStorage is updated before navigating
+    if (resume.resumeData) {
+        localStorage.setItem("achievements", JSON.stringify(resume.resumeData.achievements || []));
+        localStorage.setItem("education", JSON.stringify(resume.resumeData.education || []));
+        localStorage.setItem("experiences", JSON.stringify(resume.resumeData.experiences || []));
+        localStorage.setItem("projects", JSON.stringify(resume.resumeData.projects || []));
+        localStorage.setItem("personalInfo", JSON.stringify(resume.resumeData.personalInfo || {}));
+        localStorage.setItem("skills", JSON.stringify(resume.resumeData.skills || []));
+        localStorage.setItem("resources", JSON.stringify(resume.resumeData.resources || []));
+        localStorage.setItem("formData", JSON.stringify(resume.resumeData)); 
+    }
+
+    console.log("LocalStorage updated before navigating");
+
+    await dispatch(setTemplate(resume.template)); 
+
+    // Navigate after ensuring data is stored
     navigate("/resume", { state: { formData: resume.resumeData } });
-  };
+};
+
 
   const getATSScore = async (resume) => {
     setLoadingStates((prev) => ({ ...prev, [resume._id]: true }));
@@ -326,7 +343,7 @@ json\n{\n  \"ATS_Analysis\": {\n    \"ATS_Compatibility_Score\": 65,\n    \"Posi
   };
 
   return (
-    <div className="p-6 py-20 max-w-7xl mx-auto">
+    <div className="p-6 py-20 max-w-6xl mx-auto ">
       {/* Header and Controls */}
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 gap-4">
         <h1 className="text-3xl font-bold">Your Resumes</h1>
