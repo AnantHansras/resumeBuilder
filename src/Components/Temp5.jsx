@@ -209,7 +209,7 @@ const Temp5 = ({ formData }) => {
               {formData.education?.twelfth && (
                 <div className="mb-4">
                   <div className="flex items-center mb-1">
-                    <div className="w-2 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
+                    <div className="w-1 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
                     <h3 className="font-semibold text-[0.7rem]">
                       {formData.education.twelfth.name}
                     </h3>
@@ -229,7 +229,7 @@ const Temp5 = ({ formData }) => {
               {formData.education?.tenth && (
                 <div>
                   <div className="flex items-center mb-1">
-                    <div className="w-2 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
+                    <div className="w-1 h-1 bg-purple-500 rounded-full mr-2 -mt-6"></div>
                     <h3 className="font-semibold text-[0.7rem]">
                       {formData.education.tenth.name}
                     </h3>
