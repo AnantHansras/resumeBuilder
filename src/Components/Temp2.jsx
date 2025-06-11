@@ -1,4 +1,5 @@
 import { Mail, Phone, Calendar } from "lucide-react";
+import { ExternalLink } from 'lucide-react';
 const Temp2 = ({ formData }) => {
   return (
     <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
@@ -153,16 +154,16 @@ const Temp2 = ({ formData }) => {
               formData.projects.length > 0 &&
               formData.projects.map((proj, index) => (
                 <div key={index} className="mb-4">
-                  <div className="flex justify-between items-baseline">
-                    <h3 className="font-semibold font-sans text-[0.75rem] text-gray-800">{proj.name}</h3>
+                  <div className="flex justify-between items-center">
+                    <h3 className="font-semibold text-[0.75rem] text-gray-800">{proj.name}</h3>
                     {proj.link && (
                       <a
-                        href={proj.link}
-                        className="text-gray-800 text-[0.65rem] underline"
+                        href={proj.link.startsWith("http") ? proj.link : `https://${proj.link}`}
+                        className="text-gray-800 text-[0.65rem] underline hover:text-blue-700"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Project Link
+                        <ExternalLink className="h-[0.85rem] ml-1 -mb-[0.15rem]"/>
                       </a>
                     )}
                   </div>

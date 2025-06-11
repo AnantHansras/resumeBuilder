@@ -1,5 +1,6 @@
 import React from "react";
 import { Mail, Phone, Calendar } from "lucide-react";
+import { ExternalLink } from 'lucide-react';
 const Temp5 = ({ formData }) => {
   return (
     <div className="max-w-[794px] border border-gray-200 mx-auto flex justify-center items-center rounded-md shadow-2xl bg-white text-gray-800 font-sans"
@@ -110,15 +111,15 @@ const Temp5 = ({ formData }) => {
                         {proj.name}
                       </h3>
                       {proj.link && (
-                        <a
-                          href={proj.link}
-                          className="text-purple-600 text-[0.65rem] underline"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          View Project
-                        </a>
-                      )}
+                      <a
+                        href={proj.link.startsWith("http") ? proj.link : `https://${proj.link}`}
+                        className="text-gray-800 text-[0.65rem] underline hover:text-blue-700"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="h-[0.85rem] ml-1 -mb-[0.15rem]"/>
+                      </a>
+                    )}
                     </div>
                     <div className="ml-4">
                       <p className="italic text-[0.7rem] text-gray-600 mb-0">

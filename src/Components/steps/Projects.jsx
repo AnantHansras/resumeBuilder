@@ -85,7 +85,7 @@ export default function Projects({ data, updateData }) {
 
         
         <div className="relative w-full">
-        <label htmlFor="description" className="text-[#46464e] block mb-1">Project Description</label>
+        <label htmlFor="description" className="text-[#46464e] block">Project Description</label>
         <div className="flex justify-end">
           <button 
             onClick={gemini}
@@ -112,7 +112,17 @@ export default function Projects({ data, updateData }) {
             className="w-full p-2 border min-h-20 rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
           />
       </div>
-
+        <div>
+  <label htmlFor="link" className="text-[#46464e] block mb-1">Project Link</label>
+  <input
+    id="link"
+    name="link"
+    value={newProject.link}
+    onChange={handleChange}
+    placeholder="Enter project URL (e.g., https://github.com/...)"
+    className="w-full p-2 border rounded focus:ring-[#ffc85e] focus:border-[#ffc85e]"
+  />
+</div>
         <button 
           onClick={addProject} 
           className="mt-2 bg-[#07142b] text-white px-4 py-2 rounded hover:bg-[#07142b]/90"
@@ -136,13 +146,13 @@ export default function Projects({ data, updateData }) {
                 )}
                 {project.link && (
                   <a
-                    href={project.link}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-sm text-blue-600 hover:underline mt-1 block"
-                  >
-                    Project Link
-                  </a>
+  href={project.link.startsWith("http") ? project.link : `https://${project.link}`}
+  target="_blank"
+  rel="noopener noreferrer"
+  className="text-sm text-blue-600 hover:underline mt-1 block"
+>
+  Project Link
+</a>
                 )}
                 <button
                   onClick={() => removeProject(index)}

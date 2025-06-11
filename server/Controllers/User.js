@@ -66,7 +66,7 @@ const sendotpController = async (req,res) => {
         console.log(req.header)
         console.log(req.body);
         const {email} = req.body;
-        const userPresent = await User.findOne({email});
+        const userPresentc = await User.findOne({email});
         if(userPresent){
             return res.status(401).json({
                 success:false,
