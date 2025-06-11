@@ -5,9 +5,11 @@ import { TypeAnimation } from "react-type-animation";
 import home1 from "../assets/home1.avif";
 import home2 from "../assets/home2.avif";
 import Footer from "../Components/Footer";
-import '../Components/animation.css'
+import "../Components/animation.css";
 
 const Home = () => {
+  const storedToken = localStorage.getItem("token");
+  const token = storedToken ? JSON.parse(storedToken) : null;
   return (
     <div className="min-h-screen bg-[#f9faff]">
       <div className="container mx-auto px-4 py-24">
@@ -18,7 +20,7 @@ const Home = () => {
           className="text-center mb-12"
         >
           <h1 className="text-6xl font-bold text-[#07142b] mb-6">
-            Craft Your {" "}
+            Craft Your{" "}
             <span className="text-[#ffc85e]">
               <TypeAnimation
                 sequence={[
@@ -39,24 +41,41 @@ const Home = () => {
           <p className="text-2xl text-[#46464e] mb-12">
             Create a professional resume in minutes with our easy-to-use builder
           </p>
-          <motion.a
-  href="/create-resume"
-  className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
-  whileHover={{ scale: 1.05 }}
-  whileTap={{ scale: 0.95 }}
->
-  Create Your Resume
-  <motion.span 
-    initial={{ x: -10, opacity: 0 }} 
-    animate={{ x: 0, opacity: 1 }} 
-    transition={{ duration: 0.3 }} 
-    className="ml-2"
-  >
-    <ArrowRight />
-  </motion.span>
-</motion.a>
-         
-          
+          {!token ? (
+            <motion.a
+              href="/login"
+              className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Let’s Get Started
+              <motion.span
+                initial={{ x: -10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="ml-2"
+              >
+                <ArrowRight />
+              </motion.span>
+            </motion.a>
+          ) : (
+            <motion.a
+              href="/create-resume"
+              className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Create Your Resume
+              <motion.span
+                initial={{ x: -10, opacity: 0 }}
+                animate={{ x: 0, opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                className="ml-2"
+              >
+                <ArrowRight />
+              </motion.span>
+            </motion.a>
+          )}
         </motion.div>
 
         <motion.div

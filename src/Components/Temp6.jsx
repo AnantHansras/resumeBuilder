@@ -177,12 +177,12 @@ const Temp8 = ({ formData }) => {
     </h2>
 
     {formData.education.higher && (
-      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+      <div className="mb-6 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
         <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
-        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.higher.name}</h3>
-        <p className="italic text-[0.7rem] text-gray-600">{formData.education.higher.degree}</p>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.higher.degree}</h3>
+        <p className="italic text-[0.7rem] text-gray-600">{formData.education.higher.name}</p>
         <p className="text-[0.7rem] text-gray-500">
-          {formData.education.higher.year} |{" "}
+          {formData.education.higher.year}|{" "}
           {formData.education.higher.percentage <= 10
             ? `CGPA: ${formData.education.higher.percentage}`
             : `Percentage: ${formData.education.higher.percentage}%`}
@@ -191,10 +191,10 @@ const Temp8 = ({ formData }) => {
     )}
 
     {formData.education.twelfth && (
-      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+      <div className="mb-6 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
         <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
-        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.twelfth.name}</h3>
-        <p className="italic text-[0.7rem] text-gray-600">Senior Secondary (XII)</p>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">Senior Secondary (XII)</h3>
+        <p className="italic text-[0.7rem] text-gray-600">{formData.education.twelfth.name}</p>
         <p className="text-[0.7rem] text-gray-500">
           {formData.education.twelfth.year} |{" "}
           {formData.education.twelfth.percentage <= 10
@@ -205,10 +205,10 @@ const Temp8 = ({ formData }) => {
     )}
 
     {formData.education.tenth && (
-      <div className="mb-6 relative pl-6 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
+      <div className="mb-6 relative pl-4 before:content-[''] before:absolute before:left-0 before:top-0 before:bottom-0 before:w-[2px] before:bg-gray-200">
         <div className="absolute left-0 top-0 w-2 h-2 rounded-full bg-gray-800 -ml-[3px]"></div>
-        <h3 className="font-semibold text-[0.75rem] text-gray-800">{formData.education.tenth.name}</h3>
-        <p className="italic text-[0.7rem] text-gray-600">Secondary (X)</p>
+        <h3 className="font-semibold text-[0.75rem] text-gray-800">Secondary (X)</h3>
+        <p className="italic text-[0.7rem] text-gray-600">{formData.education.tenth.name}</p>
         <p className="text-[0.7rem] text-gray-500">
           {formData.education.tenth.year} |{" "}
           {formData.education.tenth.percentage <= 10

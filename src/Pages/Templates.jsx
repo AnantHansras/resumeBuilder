@@ -17,15 +17,15 @@ const Templates = () => {
   const [hovered, setHovered] = useState(null);
   const dispatch = useDispatch();
   const templates = [
-    { title: "Modern Resume 1", src: t1 },
-    { title: "Professional Resume 1", src: t2 },
-    { title: "Creative Resume 1", src: t3 },
-    { title: "Modern Resume 2", src: t4 },
-    { title: "Professional Resume 2", src: t5 },
-    { title: "Creative Resume 2", src: t6 },
-    { title: "Modern Resume 3", src: t7 },
-    { title: "Professional Resume 3", src: t8 },
-    { title: "Creative Resume 3", src: t9 },
+    { title: "Modern Resume", src: t1 },
+    { title: "Professional Resume", src: t2 },
+    { title: "Creative Resume", src: t3 },
+    { title: "Minimal Resume", src: t4 },
+    { title: "Vibrant Resume ", src: t5 },
+    { title: "Creative Resume ", src: t6 },
+    { title: "Polished Edge Resume", src: t7 },
+    { title: "Clean Focus Resume", src: t8 },
+    { title: "Bold Resume", src: t9 },
   ];
   
   const handleTemplateClick = (index) => {
@@ -55,7 +55,7 @@ const Templates = () => {
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleTemplateClick(index)}
             className={`rounded-lg relative cursor-pointer bg-gray-100 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out ${
-              hovered !== null && hovered !== index ? "blur-[6px] scale-[0.98]" : ""
+              hovered !== null && hovered !== index ? "blur-[2px] scale-[0.97]" : ""
             }`}
           >
             <img

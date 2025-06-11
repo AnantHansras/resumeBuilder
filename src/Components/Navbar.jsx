@@ -3,8 +3,26 @@ import {useNavigate} from 'react-router-dom'
 import { Menu,X,FileText, Layout, Info, HelpCircle, Mail, FilePlus, ClipboardList, Settings2 } from "lucide-react";
 import { logout } from "../Services/userAPI";
 import { useDispatch } from "react-redux";
-import logo from '../assets/logo.jpg'
-const navItems = [
+
+const navItems1 = [
+  {
+    name: "Resume",
+    href: "/templates",
+    dropdownItems: [
+      {
+        name: "Templates",
+        icon: Layout, // Represents structured document layouts, fitting for resume templates
+        description: "Browse  templates to craft your perfect resume.",
+        href: "/templates"
+      },
+      { 
+        name: "Resume Examples", 
+        icon: ClipboardList, // Represents lists or examples of resumes
+        description: "Explore industry-specific resume samples for inspiration.", 
+        href: "/example-resume" 
+      }
+    ],
+  },
   {
     name: "Tutorials",
     href: "/tut1",
@@ -47,6 +65,10 @@ const navItems = [
       },
     ],
   },
+  
+];
+
+const navItems2 = [
   {
     name: "Resume",
     href: "/create-resume",
@@ -75,24 +97,62 @@ const navItems = [
         description: "You can see and download all your created resumes here", 
         href: "/your-resume" 
       },
-      // { 
-      //   name: "Improve Resume", 
-      //   icon: Settings2, // Represents optimization and fine-tuning
-      //   description: "Optimize your resume format and content for better results.", 
-      //   href: "/improve-resume" 
-      // },
     ],
   },
+  {
+    name: "Tutorials",
+    href: "/tut1",
+    dropdownItems: [
+      { 
+        name: "Content Writing", 
+        icon: FileText, // Represents writing and text-related content
+        description: "Master the art of crafting impactful resume content.", 
+        href: "/tut1" 
+      },
+      { 
+        name: "Design & Formatting", 
+        icon: Layout, // Represents structuring and formatting
+        description: "Learn how to structure and style your resume for maximum impact.", 
+        href: "/tut2" 
+      },
+    ],
+  },
+  {
+    name: "About",
+    href: "/about",
+    dropdownItems: [
+      { 
+        name: "About Section", 
+        icon: Info, // Represents information about the platform
+        description: "Learn more about our platform and mission.", 
+        href: "/about" 
+      },
+      { 
+        name: "FAQ's", 
+        icon: HelpCircle, // Common icon for FAQs or help sections
+        description: "Find answers to common questions about our services.", 
+        href: "/faq" 
+      },
+      { 
+        name: "Contact Us", 
+        icon: Mail, // Represents communication or contact
+        description: "Get in touch with our support team for assistance.", 
+        href: "/contact-us" 
+      },
+    ],
+  },
+  
 ];
-
 
 
 const Navbar = () => {
   
-  const storedToken = localStorage.getItem("token");
-
+const storedToken = localStorage.getItem("token");
 const token = storedToken ? JSON.parse(storedToken) : null;
-  
+  let navItems = navItems1;
+  if(token){
+    navItems = navItems2;
+  }
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   

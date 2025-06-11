@@ -50,15 +50,15 @@ function App() {
     }
   }
 
-  useEffect(() => {
+  // useEffect(() => {
     
-    const token = localStorage.getItem("token");
-    console.log(isTokenExpired(token))
-    if (!token || isTokenExpired(token)) {
-      localStorage.removeItem("token");
-      navigate("/login"); // Redirect to login on token expiry
-    }
-  }, []);
+  //   const token = localStorage.getItem("token");
+  //   console.log(isTokenExpired(token))
+  //   if (!token || isTokenExpired(token)) {
+  //     localStorage.removeItem("token");
+  //     navigate("/login"); // Redirect to login on token expiry
+  //   }
+  // }, []);
   
   return (
     <div>

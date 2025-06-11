@@ -8,7 +8,6 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   
-  
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -22,14 +21,13 @@ export default function Login() {
 };
 
   return (
-    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-20">
-      <div className="w-full max-w-md bg-white shadow-md rounded-lg p-6">
+    <div className="flex min-h-screen w-full h-full bg-[#f9faff] items-center justify-center px-4 sm:px-6 lg:px-8 py-32">
+      <div className="w-full max-w-sm bg-white shadow-md rounded-lg p-6">
         <div className="text-center mb-6">
-          <h2 className="text-2xl font-bold text-[#46464e]">Log in to Resumify</h2>
-          <p className="text-[#46464e]">Enter your email and password to access your account</p>
+          <h2 className="text-2xl font-bold text-[#46464e]">Login to Resumify</h2>
         </div>
-        <form onSubmit={handleSubmit} className="space-y-4">
-          <div className="space-y-2">
+        <form onSubmit={handleSubmit} className="space-y-4 px-2">
+          <div className="space-y-1">
             <label htmlFor="email" className="text-[#07142b] block font-medium">
               Email
             </label>
@@ -40,10 +38,10 @@ export default function Login() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
-              className="w-full px-3 py-2 border rounded-lg border-[#07142b] text-[#07142b]"
+              className="w-full px-3 py-1 border rounded-lg border-[#07142b] text-[#07142b]"
             />
           </div>
-          <div className="space-y-2">
+          <div className="space-y-1">
             <label htmlFor="password" className="text-[#07142b] block font-medium">
               Password
             </label>
@@ -54,7 +52,7 @@ export default function Login() {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               required
-              className="w-full px-3 py-2 border rounded-lg border-[#07142b] text-[#07142b]"
+              className="w-full px-3 py-1 border rounded-lg border-[#07142b] text-[#07142b]"
             />
           </div>
           <button type="submit" className="w-full bg-[#ffc85e] hover:bg-[#ffd78e] text-[#07142b] py-2 rounded-lg font-bold">

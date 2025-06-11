@@ -83,12 +83,13 @@ const Temp3 = ({ formData }) => {
             {formData.education?.higher && (
               <div className="mb-6">
                 <h3 className="font-semibold text-[0.7rem]">
-                  {formData.education.higher.name}
+                  {formData.education.higher.degree}
                 </h3>
                 <p className="italic text-[0.7rem] text-gray-300">
-                  {formData.education.higher.degree}
+                {formData.education.higher.name}
+                  
                 </p>
-                <p className="text-[0.7rem] text-gray-500 mb-2">
+                <p className="text-[0.7rem] text-gray-400 mb-2">
                     {formData.education.higher.year} |{" "}
                     {formData.education.higher.percentage <= 10
                       ? `CGPA: ${formData.education.higher.percentage}`
@@ -100,12 +101,12 @@ const Temp3 = ({ formData }) => {
             {formData.education?.twelfth && (
               <div className="mb-6">
                 <h3 className="font-semibold text-[0.7rem]">
-                  {formData.education.twelfth.name}
+                  Senior Secondary(XII)
                 </h3>
                 <p className="italic text-[0.7rem] text-gray-300">
-                  Senior Secondary (XII)
+                  {formData.education.twelfth.name}
                 </p>
-                <p className="text-[0.7rem] text-gray-500 mb-2">
+                <p className="text-[0.7rem] text-gray-400 mb-2">
                     {formData.education.twelfth.year} |{" "}
                     {formData.education.twelfth.percentage <= 10
                       ? `CGPA: ${formData.education.twelfth.percentage}`
@@ -117,12 +118,12 @@ const Temp3 = ({ formData }) => {
             {formData.education?.tenth && (
               <div className="mb-6">
                 <h3 className="font-semibold text-[0.7rem]">
-                  {formData.education.tenth.name}
+                  Secondary (X)
                 </h3>
                 <p className="italic text-[0.7rem] text-gray-300">
-                  Secondary (X)
+                  {formData.education.tenth.name}
                 </p>
-                <p className="text-[0.7rem] text-gray-500 mb-2">
+                <p className="text-[0.7rem] text-gray-400 mb-2">
                     {formData.education.tenth.year} |{" "}
                     {formData.education.tenth.percentage <= 10
                       ? `CGPA: ${formData.education.tenth.percentage}`

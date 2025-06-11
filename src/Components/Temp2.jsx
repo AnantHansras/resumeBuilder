@@ -71,8 +71,8 @@ const Temp2 = ({ formData }) => {
 
               {formData.education?.higher && (
                 <div className="mb-6">
-                  <h3 className="font-semibold text-[0.7rem] ">{formData.education.higher.name}</h3>
-                  <p className="italic text-[0.7rem] text-gray-700">{formData.education.higher.degree}</p>
+                  <h3 className="font-semibold text-[0.7rem] ">{formData.education.higher.degree}</h3>
+                  <p className="italic text-[0.7rem] text-gray-700">{formData.education.higher.name}</p>
                   <p className="text-[0.7rem] text-gray-600 mb-2">
                     {formData.education.higher.year} |{" "}
                     {formData.education.higher.percentage <= 10
@@ -84,8 +84,8 @@ const Temp2 = ({ formData }) => {
 
               {formData.education?.twelfth && (
                 <div className="mb-6">
-                  <h3 className="font-semibold text-[0.7rem]">{formData.education.twelfth.name}</h3>
-                  <p className="italic text-[0.7rem] text-gray-700">Senior Secondary (XII)</p>
+                  <h3 className="font-semibold text-[0.7rem]">Senior Secondary(XII)</h3>
+                  <p className="italic text-[0.7rem] text-gray-700">{formData.education.twelfth.name}</p>
                   <p className="text-[0.7rem] text-gray-600 mb-2">
                     {formData.education.twelfth.year} |{" "}
                     {formData.education.twelfth.percentage <= 10
@@ -97,8 +97,8 @@ const Temp2 = ({ formData }) => {
 
               {formData.education?.tenth && (
                 <div className="mb-6">
-                  <h3 className="font-semibold text-[0.7rem]">{formData.education.tenth.name}</h3>
-                  <p className="italic text-[0.7rem] text-gray-700">Secondary (X)</p>
+                  <h3 className="font-semibold text-[0.7rem]">Secondary (X) </h3>
+                  <p className="italic text-[0.7rem] text-gray-700">{formData.education.tenth.name}</p>
                   <p className="text-[0.7rem] text-gray-600 mb-2">
                     {formData.education.tenth.year} |{" "}
                     {formData.education.tenth.percentage <= 10
@@ -159,7 +159,7 @@ const Temp2 = ({ formData }) => {
                     {proj.link && (
                       <a
                         href={proj.link.startsWith("http") ? proj.link : `https://${proj.link}`}
-                        className="text-gray-800 text-[0.65rem] underline hover:text-blue-700"
+                        className="text-gray-800 text-[0.65rem] hover:text-blue-700"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
