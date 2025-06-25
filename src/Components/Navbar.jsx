@@ -169,7 +169,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <a href="/" className="flex items-center">
+            <a onClick={() => navigate('/')} className="flex items-center">
               <span className="text-2xl font-bold text-[#0c1986]">RESUMIFY</span>
             </a>
           </div>
@@ -179,7 +179,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
             {navItems.map((item) => (
               <div key={item.name} className="relative mx-4 group "  >
                 <a
-                  href={item.href}
+                  onClick={() => navigate(item.href)}
                   style={{ fontFamily: "'jaro', cursive" }}
                   className="px-3 py-2 rounded-md  text-base text-[#07142b] hover:text-[#0070d6] transition-colors duration-200"
                 >
@@ -192,7 +192,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
                       {item.dropdownItems.map((dropdownItem) => (
                         <a 
                           key={dropdownItem.name}
-                          href={dropdownItem.href}
+                          onClick={() => navigate(dropdownItem.href)}
                           className="flex items-start space-x-3 group/item hover:bg-gray-50 p-2 rounded-md transition-colors duration-200"
                         >
                           {dropdownItem.icon && (
@@ -245,7 +245,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
             {navItems.map((item) => (
               <div key={item.name} className="space-y-2">
                 <a
-                  href={item.href}
+                  onClick={() => navigate(item.href)}
                   className="block px-3 py-2 rounded-md text-base font-medium text-[#07142b] hover:text-[#0070d6]"
                 >
                   {item.name}
@@ -255,7 +255,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
                     {item.dropdownItems.map((dropdownItem) => (
                       <a
                         key={dropdownItem.name}
-                        href={dropdownItem.href}
+                        onClick={() => navigate(dropdownItem.href)}
                         className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-gray-500 hover:text-[#0070d6]"
                       >
                         <dropdownItem.icon className="h-4 w-4" />

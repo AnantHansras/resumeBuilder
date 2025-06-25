@@ -43,7 +43,7 @@ const Home = () => {
           </p>
           {!token ? (
             <motion.a
-              href="/login"
+              onClick={() => navigate('/login')}
               className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -60,7 +60,7 @@ const Home = () => {
             </motion.a>
           ) : (
             <motion.a
-              href="/create-resume"
+              onClick={() => navigate('/create-resume')}
               className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -182,7 +182,7 @@ const Home = () => {
               you your dream job.
             </p>
             <a
-              href="/templates"
+              onClick={() => navigate('/templates')}
               className="inline-flex items-center px-6 py-3 text-lg font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
             >
               Explore Templates <ArrowRight className="ml-2" />
@@ -217,7 +217,7 @@ const Home = () => {
             dream jobs using our resume builder.
           </p>
           <a
-            href="/create-resume"
+            onClick={() => navigate('/create-resume')}
             className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
           >
             Start Building Your Resume <ArrowRight className="ml-2" />
