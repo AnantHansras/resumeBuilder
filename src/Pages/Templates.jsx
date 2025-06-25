@@ -54,7 +54,7 @@ const Templates = () => {
             onMouseEnter={() => setHovered(index)}
             onMouseLeave={() => setHovered(null)}
             onClick={() => handleTemplateClick(index)}
-            className={`rounded-lg relative cursor-pointer bg-gray-100 overflow-hidden h-60 md:h-96 w-full transition-all duration-300 ease-out ${
+            className={`rounded-lg relative cursor-pointer bg-gray-100 overflow-hidden aspect-[3/4]  w-full transition-all duration-300 ease-out ${
               hovered !== null && hovered !== index ? "blur-[2px] scale-[0.97]" : ""
             }`}
           >
@@ -63,11 +63,12 @@ const Templates = () => {
               alt={template.title}
               className="object-cover absolute inset-0 w-full h-full"
             />
-            <div
-              className={`absolute inset-0 bg-black/20 flex items-end py-8 px-4 transition-opacity duration-300 ${
-                hovered === index ? "opacity-100" : "opacity-0"
-              }`}
-            >
+             <div
+                  className={`
+                    absolute inset-0 flex items-end py-8 px-4 bg-black/20 
+                    md:opacity-0 group-hover:md:opacity-100 transition-opacity duration-300
+                  `}
+                >
               <div className="text-xl md:text-2xl font-medium text-white">
                 {template.title}
               </div>
