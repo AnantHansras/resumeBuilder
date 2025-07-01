@@ -170,18 +170,18 @@ const token = storedToken ? JSON.parse(storedToken) : null;
           {/* Logo */}
           <div className="flex-shrink-0">
             <a onClick={() => navigate('/')} className="flex items-center">
-              <span className="text-2xl font-bold text-[#0c1986]">RESUMIFY</span>
+              <span className="text-2xl font-bold text-[#0c1986] cursor-pointer">RESUMIFY</span>
             </a>
           </div>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex md:items-center justify-end">
             {navItems.map((item) => (
-              <div key={item.name} className="relative mx-4 group "  >
+              <div key={item.name} className="relative mx-4 group " >
                 <a
                   onClick={() => navigate(item.href)}
                   style={{ fontFamily: "'jaro', cursive" }}
-                  className="px-3 py-2 rounded-md  text-base text-[#07142b] hover:text-[#0070d6] transition-colors duration-200"
+                  className="px-3 py-2 rounded-md cursor-pointer  text-base text-[#07142b] hover:text-[#0070d6] transition-colors duration-200"
                 >
                   {item.name}
                 </a>
@@ -193,7 +193,7 @@ const token = storedToken ? JSON.parse(storedToken) : null;
                         <a 
                           key={dropdownItem.name}
                           onClick={() => navigate(dropdownItem.href)}
-                          className="flex items-start space-x-3 group/item hover:bg-gray-50 p-2 rounded-md transition-colors duration-200"
+                          className="flex items-start space-x-3 group/item cursor-pointer hover:bg-gray-50 p-2 rounded-md transition-colors duration-200"
                         >
                           {dropdownItem.icon && (
                             <div className="mt-1">
@@ -255,7 +255,8 @@ const token = storedToken ? JSON.parse(storedToken) : null;
                     {item.dropdownItems.map((dropdownItem) => (
                       <a
                         key={dropdownItem.name}
-                        onClick={() => navigate(dropdownItem.href)}
+                        
+                        onClick={() =>{navigate(dropdownItem.href);setIsOpen(false);}}
                         className="flex items-center gap-2 px-3 py-2 rounded-md text-sm text-gray-500 hover:text-[#0070d6]"
                       >
                         <dropdownItem.icon className="h-4 w-4" />
