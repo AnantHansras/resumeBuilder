@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useNavigate } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Zap, Shield, CheckCircle } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
@@ -10,6 +10,7 @@ import "../Components/animation.css";
 const Home = () => {
   const storedToken = localStorage.getItem("token");
   const token = storedToken ? JSON.parse(storedToken) : null;
+  const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-[#f9faff]">
       <div className="container mx-auto px-4 py-24">
