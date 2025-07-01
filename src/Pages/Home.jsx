@@ -45,7 +45,7 @@ const Home = () => {
           {!token ? (
             <motion.a
               onClick={() => navigate('/login')}
-              className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
+              className="inline-flex items-center cursor-pointer px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -62,7 +62,7 @@ const Home = () => {
           ) : (
             <motion.a
               onClick={() => navigate('/create-resume')}
-              className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
+              className="inline-flex items-center cursor-pointer px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300 overflow-hidden"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -184,7 +184,7 @@ const Home = () => {
             </p>
             <a
               onClick={() => navigate('/templates')}
-              className="inline-flex items-center px-6 py-3 text-lg font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
+              className="inline-flex cursor-pointer items-center px-6 py-3 text-lg font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
             >
               Explore Templates <ArrowRight className="ml-2" />
             </a>
@@ -219,7 +219,7 @@ const Home = () => {
           </p>
           <a
             onClick={() => navigate('/create-resume')}
-            className="inline-flex items-center px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
+            className="inline-flex items-center cursor-pointer px-8 py-4 text-xl font-semibold text-[#07142b] bg-[#ffc85e] rounded-full hover:bg-[#ffd78e] transition-colors duration-300"
           >
             Start Building Your Resume <ArrowRight className="ml-2" />
           </a>
