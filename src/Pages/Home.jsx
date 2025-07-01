@@ -1,4 +1,4 @@
-import React, { useNavigate } from "react";
+import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, FileText, Zap, Shield, CheckCircle } from "lucide-react";
 import { TypeAnimation } from "react-type-animation";
@@ -6,7 +6,7 @@ import home1 from "../assets/home1.avif";
 import home2 from "../assets/home2.avif";
 import Footer from "../Components/Footer";
 import "../Components/animation.css";
-
+import {useNavigate} from "react-router-dom";
 const Home = () => {
   const storedToken = localStorage.getItem("token");
   const token = storedToken ? JSON.parse(storedToken) : null;
