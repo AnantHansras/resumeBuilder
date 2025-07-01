@@ -267,9 +267,16 @@ const token = storedToken ? JSON.parse(storedToken) : null;
                 )}
               </div>
             ))}
-            <button className="w-full mt-4 px-6 py-2 bg-[#1a1f71] text-white rounded-full hover:bg-[#0070d6] transition-colors duration-200 text-sm font-medium">
-              Login
-            </button>
+           <button
+            onClick={() => {
+              setIsOpen(false); // optional: close mobile menu after click
+              navigate('/login');
+            }}
+            className="w-full mt-4 px-6 py-2 bg-[#1a1f71] text-white rounded-full hover:bg-[#0070d6] transition-colors duration-200 text-sm font-medium"
+          >
+            Login
+          </button>
+
           </div>
         </div>
       )}
