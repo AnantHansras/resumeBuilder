@@ -1,4 +1,5 @@
-const BASE_URL = "https://resumebuilderbackend-z5yj.onrender.com";
+// const BASE_URL = "https://resumebuilderbackend-z5yj.onrender.com";
+const BASE_URL = "http://localhost:7000";
 
 export const userEndpoints = {
     SENDOTP_API : BASE_URL+"/user/sendotp",

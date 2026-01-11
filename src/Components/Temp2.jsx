@@ -12,7 +12,7 @@ const Temp2 = ({ formData }) => {
 
 <div className="font-sans" style={{ width: "794px", height: "1123px",padding:"60px" }}>
       {/* Header with background */}
-      <div className="bg-gray-100 p-4 rounded-lg mb-6 -mt-6">
+      <div className="bg-gray-100 p-4 rounded-lg mb-4 -mt-6">
         {formData?.personalInfo && (
           <div className="flex flex-col items-center text-center">
             {formData.personalInfo.name && (
@@ -112,6 +112,81 @@ const Temp2 = ({ formData }) => {
           )}
 
           {/* Profiles */}
+          <section className="mb-6">
+  <h2 className="text-gray-800 border-b-2 border-gray-300 pb-2 mb-4 text-lg font-bold font-sans">
+    PROFILES
+  </h2>
+
+  <div className="space-y-3 text-[0.7rem] font-sans">
+
+          {/* GitHub */}
+    <div className="flex items-center gap-2">
+      <img
+        src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png"
+        alt="GitHub"
+        className="w-4 h-4"
+      />
+      <span className="italic">GitHub</span>
+      <a
+        href="https://github.com/AnantHansras"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <BiLink className="w-4 h-4 " />
+      </a>
+    </div>
+    {/* LeetCode */}
+    <div className="flex items-center gap-2">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/1/19/LeetCode_logo_black.png"
+        alt="LeetCode"
+        className="w-4 h-4"
+      />
+      <span className="italic">LeetCode</span>
+      <a
+        href="https://leetcode.com/u/Anant_Hansras"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <BiLink className="w-4 h-4 " />
+      </a>
+    </div>
+
+
+    {/* CodeChef */}
+    <div className="flex items-center gap-2">
+      <img
+        src="https://s3.amazonaws.com/codechef_shared/sites/all/themes/abessive/cc-logo.svg"
+        alt="CodeChef"
+        className="w-4 h-4"
+      />
+      <span className="italic">CodeChef</span>
+      <a
+        href="https://www.codechef.com/users/anant_hansras"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <BiLink className="w-4 h-4 " />
+      </a>
+    </div>
+    {/* GeeksforGeeks */}
+    <div className="flex items-center gap-2">
+      <img
+        src="https://upload.wikimedia.org/wikipedia/commons/4/43/GeeksforGeeks.svg"
+        alt="GFG"
+        className="w-4 h-4"
+      />
+      <span className="italic">GeeksforGeeks</span>
+      <a
+        href="https://www.geeksforgeeks.org/user/ananthanqu3i/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <BiLink className="w-4 h-4 " />
+      </a>
+    </div>
+  </div>
+</section>
         </div>
 
         {/* Right column - Experience, Projects, Achievements */}
@@ -162,13 +237,39 @@ const Temp2 = ({ formData }) => {
           {/* Achievements */}
           {formData?.achievements?.length > 0 && (
             <section className="mb-4">
-              <h2 className="text-gray-800 border-b-2 border-gray-300 pb-2 mb-4 text-lg font-bold uppercase font-sans">achievements</h2>
+              <h2 className="text-gray-800 border-b-2 border-gray-300 pb-2 mb-4 text-lg font-bold uppercase font-sans">EXTRA-CURRICULAR</h2>
               <ul className="list-disc list-inside text-gray-700 font-sans pl-2">
                 {formData.achievements.map((a, index) => (
                   <li className="mb-2 text-[0.7rem] font-sans" key={index}>
                     <span className="font-sans -ml-[0.45rem]">{a}</span>
                   </li>
                 ))}
+<li className="mb-2 text-[0.7rem] font-sans">
+  <span className="font-sans -ml-[0.45rem]">
+    Built the official website for Blitzschlag '25, Rajasthan’s premier cultural fest, as a core Technical Executive.
+    <a
+      href="https://blitzschlag.co.in/" // replace with actual URL if different
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-800 text-[0.65rem] hover:text-blue-700  inline-flex"
+    >
+      <ExternalLink className="h-[0.85rem] ml-1 -mb-[0.15rem]" />
+    </a>
+  </span>
+</li>
+                <li className="mb-2 text-[0.7rem] font-sans">
+  <span className="font-sans -ml-[0.45rem]">
+    Developed the website for Dconnect, a startup incubated under MIIC (MNIT Innovation and Incubation Center).
+    <a
+      href="https://dconnect.in" // replace with actual URL if different
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-gray-800 text-[0.65rem] hover:text-blue-700  inline-flex"
+    >
+      <ExternalLink className="h-[0.85rem] ml-1 -mb-[0.15rem]" />
+    </a>
+  </span>
+</li>
               </ul>
             </section>
           )}
