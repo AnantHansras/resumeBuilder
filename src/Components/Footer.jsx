@@ -83,18 +83,39 @@ const Footer = () => {
               <div key={index} className="relative">
                 <h3 className="text-[#94A3B8] font-medium mb-6 tracking-wider">{column.title}</h3>
                 <ul className="space-y-4">
-                  {column.links.map((link, i) => (
-                    <li key={i}>
-                      <a
-                        href="/create-resume"
-                        className={`inline-block text-white
-                         hover:text-[#60A5FA] transition-all duration-300 transform hover:translate-x-1`}
-                      >
-                        {link}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
+  {column.links.map((link, i) => {
+    const pathMap = {
+      "Resume Builder": "/create-resume",
+      "Resume Templates": "/templates",
+      "Resume Examples": "/example-resume",
+      "How to Write a Resume": "/tut1",
+
+      "Anant Hansras": "/credits/anant",
+      "Shiv Pratap": "/credits/shiv",
+      "Yash Pratap": "/credits/yash",
+      "Yaduvar Kansal": "/credits/yaduvar",
+
+      "About": "/about",
+      "FAQ": "/faq",
+      "Contact": "/contact-us",
+      "Privacy Policy": "/create-resume",
+      "Terms of service": "/create-resume",
+      "Cookies Policy": "/create-resume",
+    };
+
+    return (
+      <li key={i}>
+        <a
+          onClick={() => navigate(pathMap[link] || "/")}
+          className="inline-block text-white hover:text-[#60A5FA] transition-all duration-300 transform hover:translate-x-1 cursor-pointer"
+        >
+          {link}
+        </a>
+      </li>
+    );
+  })}
+</ul>
+
               </div>
             ))}
           </div>
